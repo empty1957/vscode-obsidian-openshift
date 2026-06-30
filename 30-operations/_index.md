@@ -7,6 +7,7 @@
 - [[30-operations/cluster-health-check|Cluster Health Check]]
 - [[30-operations/backup-and-restore|Backup and Restore]]
 - [[30-operations/upgrade-runbook|Upgrade Runbook]]
+- [[30-operations/operator-installation-runbook|Operator Installation Runbook]]
 - [[30-operations/assisted-installer|Assisted Installer]]
 - [[30-operations/openstack-logging|OpenStack Logging]]
 
