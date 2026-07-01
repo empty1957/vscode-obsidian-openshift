@@ -1,4 +1,5 @@
 site_name: OpenShift Knowledge Base
+site_url: https://empty1957.github.io/vscode-obsidian-openshift/
 
 theme:
   name: material
