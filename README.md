@@ -21,6 +21,7 @@ VS Code の Foam 拡張機能で扱う OpenShift ナレッジベースです。
 - [[20-architecture/metallb-operator|MetalLB Operator]]
 - [[20-architecture/sriov-network-operator|SR-IOV Network Operator]]
 - [[20-architecture/nmstate-operator|NMState Operator]]
+- [[30-operations/operator-installation-runbook|Operator Installation Runbook]]
 - [[30-operations/assisted-installer|Assisted Installer]]
 - [[30-operations/openstack-logging|OpenStack Logging]]
 
