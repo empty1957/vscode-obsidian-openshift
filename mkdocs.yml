@@ -1,0 +1,11 @@
+site_name: OpenShift Knowledge Base
+
+theme:
+  name: material
+
+docs_dir: docs
+
+plugins:
+  - search
+  - ezlinks:
+      wikilinks: true
