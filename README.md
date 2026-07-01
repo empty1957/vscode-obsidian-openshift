@@ -34,13 +34,13 @@ VS Code の Foam 拡張機能で扱う OpenShift ナレッジベースです。
 
 ## GitHub Pages
 
-`main` ブランチに push すると、GitHub Actions が MkDocs サイトをビルドして GitHub Pages に公開します。
+`main` ブランチに push すると、GitHub Actions が MkDocs サイトをビルドし、公開用の `gh-pages` ブランチへ反映します。
 
 公開先:
 
 https://empty1957.github.io/vscode-obsidian-openshift/
 
-GitHub 側では、リポジトリの **Settings > Pages > Build and deployment** で Source を **GitHub Actions** に設定します。
+GitHub 側では、リポジトリの **Settings > Pages > Build and deployment** で Source を **Deploy from a branch** に設定し、Branch を **gh-pages**、Folder を **/(root)** に設定します。
 
 ローカルで確認する場合:
 
