@@ -2288,22 +2288,22 @@
 <h2 id="scope">Scope</h2>
 <p>このノートでは、Assisted InstallerをRHACM/MCE + Hive連携として扱います。Hub上の <code>ClusterDeployment</code>、<code>AgentClusterInstall</code>、<code>InfraEnv</code>、<code>Agent</code>、<code>NMStateConfig</code> を確認しながら、Spokeクラスタの作成状態を追います。</p>
 <h2 id="primary-checks">Primary Checks</h2>
-<pre><code class="language-bash">oc get clusterdeployment -A
-oc get agentclusterinstall -A
-oc get infraenv -A
-oc get agent -A
-oc get managedcluster
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>clusterdeployment<span class="w"> </span>-A
+oc<span class="w"> </span>get<span class="w"> </span>agentclusterinstall<span class="w"> </span>-A
+oc<span class="w"> </span>get<span class="w"> </span>infraenv<span class="w"> </span>-A
+oc<span class="w"> </span>get<span class="w"> </span>agent<span class="w"> </span>-A
+oc<span class="w"> </span>get<span class="w"> </span>managedcluster
+</code></pre></div>
 <p>対象namespaceを絞って確認します。</p>
-<pre><code class="language-bash">NS=&lt;cluster-namespace&gt;
-oc get clusterdeployment -n $NS
-oc get agentclusterinstall -n $NS
-oc get infraenv -n $NS
-oc get agent -n $NS -o wide
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">NS</span><span class="o">=</span>&lt;cluster-namespace&gt;
+oc<span class="w"> </span>get<span class="w"> </span>clusterdeployment<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NS</span>
+oc<span class="w"> </span>get<span class="w"> </span>agentclusterinstall<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NS</span>
+oc<span class="w"> </span>get<span class="w"> </span>infraenv<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NS</span>
+oc<span class="w"> </span>get<span class="w"> </span>agent<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NS</span><span class="w"> </span>-o<span class="w"> </span>wide
+</code></pre></div>
 <h2 id="cluster-install-conditions">Cluster Install Conditions</h2>
-<pre><code class="language-bash">oc get agentclusterinstall &lt;name&gt; -n &lt;namespace&gt; -o jsonpath='{range .status.conditions[*]}{.type}{&quot;\t&quot;}{.status}{&quot;\t&quot;}{.message}{&quot;\n&quot;}{end}'
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>agentclusterinstall<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{range .status.conditions[*]}{.type}{&quot;\t&quot;}{.status}{&quot;\t&quot;}{.message}{&quot;\n&quot;}{end}&#39;</span>
+</code></pre></div>
 <p>見る条件です。</p>
 <ul>
 <li><code>SpecSynced</code>: <code>AgentClusterInstall</code> の内容がAssisted Serviceへ同期されているか</li>
@@ -2313,28 +2313,28 @@ oc get agent -n $NS -o wide
 <li><code>Failed</code>: 失敗していないか</li>
 </ul>
 <h2 id="agent-checks">Agent Checks</h2>
-<pre><code class="language-bash">oc get agent -n &lt;namespace&gt;
-oc describe agent &lt;agent-name&gt; -n &lt;namespace&gt;
-oc get agent &lt;agent-name&gt; -n &lt;namespace&gt; -o jsonpath='{.status.inventory.hostname}{&quot;\n&quot;}{.status.inventory.interfaces}{&quot;\n&quot;}'
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>agent<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+oc<span class="w"> </span>describe<span class="w"> </span>agent<span class="w"> </span>&lt;agent-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+oc<span class="w"> </span>get<span class="w"> </span>agent<span class="w"> </span>&lt;agent-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.status.inventory.hostname}{&quot;\n&quot;}{.status.inventory.interfaces}{&quot;\n&quot;}&#39;</span>
+</code></pre></div>
 <p>Hostをインストール対象にするには、通常 <code>approved</code> が必要です。</p>
-<pre><code class="language-bash">oc patch agent &lt;agent-name&gt; -n &lt;namespace&gt; --type merge -p '{&quot;spec&quot;:{&quot;approved&quot;:true}}'
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>patch<span class="w"> </span>agent<span class="w"> </span>&lt;agent-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>--type<span class="w"> </span>merge<span class="w"> </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;:{&quot;approved&quot;:true}}&#39;</span>
+</code></pre></div>
 <p>roleやinstallation diskも、環境に応じて明示します。</p>
-<pre><code class="language-bash">oc patch agent &lt;agent-name&gt; -n &lt;namespace&gt; --type merge -p '{&quot;spec&quot;:{&quot;role&quot;:&quot;master&quot;}}'
-oc patch agent &lt;agent-name&gt; -n &lt;namespace&gt; --type merge -p '{&quot;spec&quot;:{&quot;installation_disk_id&quot;:&quot;/dev/disk/by-id/&lt;disk-id&gt;&quot;}}'
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>patch<span class="w"> </span>agent<span class="w"> </span>&lt;agent-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>--type<span class="w"> </span>merge<span class="w"> </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;:{&quot;role&quot;:&quot;master&quot;}}&#39;</span>
+oc<span class="w"> </span>patch<span class="w"> </span>agent<span class="w"> </span>&lt;agent-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>--type<span class="w"> </span>merge<span class="w"> </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;:{&quot;installation_disk_id&quot;:&quot;/dev/disk/by-id/&lt;disk-id&gt;&quot;}}&#39;</span>
+</code></pre></div>
 <h2 id="infraenv-and-iso">InfraEnv And ISO</h2>
-<pre><code class="language-bash">oc get infraenv &lt;name&gt; -n &lt;namespace&gt; -o yaml
-oc get infraenv &lt;name&gt; -n &lt;namespace&gt; -o jsonpath='{.status.isoDownloadURL}{&quot;\n&quot;}'
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>infraenv<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span>yaml
+oc<span class="w"> </span>get<span class="w"> </span>infraenv<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.status.isoDownloadURL}{&quot;\n&quot;}&#39;</span>
+</code></pre></div>
 <p>ISOが生成されない場合は、pull secret、proxy、SSH key、mirror registry、CA証明書、NMStateConfig selectorを確認します。</p>
 <h2 id="static-network">Static Network</h2>
 <p>静的IPや複数NICを使う場合は、<code>NMStateConfig</code> と <code>InfraEnv.spec.nmStateConfigLabelSelector</code> の対応を確認します。</p>
-<pre><code class="language-bash">oc get nmstateconfig -n &lt;namespace&gt;
-oc describe nmstateconfig &lt;name&gt; -n &lt;namespace&gt;
-oc get infraenv &lt;name&gt; -n &lt;namespace&gt; -o jsonpath='{.spec.nmStateConfigLabelSelector}{&quot;\n&quot;}'
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>nmstateconfig<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+oc<span class="w"> </span>describe<span class="w"> </span>nmstateconfig<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
+oc<span class="w"> </span>get<span class="w"> </span>infraenv<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.spec.nmStateConfigLabelSelector}{&quot;\n&quot;}&#39;</span>
+</code></pre></div>
 <h2 id="common-failure-patterns">Common Failure Patterns</h2>
 <ul>
 <li>Hostが <code>Agent</code> として登録されない</li>

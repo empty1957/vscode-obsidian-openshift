@@ -2292,13 +2292,13 @@
 <li>サポートケースへ連携する可能性がある場合は、<code>cluster-admin</code> 権限での証跡取得可否を確認しておくこと</li>
 </ul>
 <h2 id="quick-check">Quick Check</h2>
-<pre><code class="language-bash">oc whoami
-oc get clusterversion
-oc get co
-oc get nodes
-oc get pods -A
-oc get events -A --sort-by=.lastTimestamp
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>whoami
+oc<span class="w"> </span>get<span class="w"> </span>clusterversion
+oc<span class="w"> </span>get<span class="w"> </span>co
+oc<span class="w"> </span>get<span class="w"> </span>nodes
+oc<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
+oc<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-A<span class="w"> </span>--sort-by<span class="o">=</span>.lastTimestamp
+</code></pre></div>
 <h2 id="checkpoints">Checkpoints</h2>
 <ul>
 <li><code>oc get clusterversion</code> で <code>Available=True</code>、かつ意図しない更新中や失敗履歴がないか</li>
@@ -2348,10 +2348,10 @@ oc get events -A --sort-by=.lastTimestamp
 </table>
 <h2 id="evidence-collection">Evidence Collection</h2>
 <p>一次切り分けで原因が見えない、または Red Hat Support へ連携する場合は、調査ログを早めに固定します。</p>
-<pre><code class="language-bash">oc get clusterversion -o jsonpath='{.items[].spec.clusterID}{&quot;\n&quot;}'
-oc adm must-gather
-oc adm inspect ns/&lt;namespace&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>clusterversion<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[].spec.clusterID}{&quot;\n&quot;}&#39;</span>
+oc<span class="w"> </span>adm<span class="w"> </span>must-gather
+oc<span class="w"> </span>adm<span class="w"> </span>inspect<span class="w"> </span>ns/&lt;namespace&gt;
+</code></pre></div>
 <ul>
 <li>Cluster ID はサポートケースでクラスターを一意に識別するために控えます。</li>
 <li><code>oc adm must-gather</code> はクラスター全体の診断情報を収集します。実行後に生成されたディレクトリを圧縮して保管します。</li>

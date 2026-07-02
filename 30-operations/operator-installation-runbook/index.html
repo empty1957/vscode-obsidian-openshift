@@ -2289,47 +2289,47 @@
 <h2 id="cli-olm-resources">CLI: OLM Resources</h2>
 <p>Operator名、channel、CatalogSource、Namespaceを確認します。</p>
 <p>CLI導入で作成するOLMリソースの意味や、<code>Subscription</code>、<code>OperatorGroup</code>、<code>InstallPlan</code> の設計観点は <a href="../../20-architecture/operator-cli-installation/" title="Operator CLI Installation">Operator CLI Installation</a> にまとめています。</p>
-<pre><code class="language-bash">oc get packagemanifest -n openshift-marketplace | grep -i &lt;operator-name&gt;
-oc get packagemanifest &lt;package-name&gt; -n openshift-marketplace -o yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>packagemanifest<span class="w"> </span>-n<span class="w"> </span>openshift-marketplace<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>&lt;operator-name&gt;
+oc<span class="w"> </span>get<span class="w"> </span>packagemanifest<span class="w"> </span>&lt;package-name&gt;<span class="w"> </span>-n<span class="w"> </span>openshift-marketplace<span class="w"> </span>-o<span class="w"> </span>yaml
+</code></pre></div>
 <p>Namespaceを作成します。</p>
-<pre><code class="language-bash">oc create namespace &lt;operator-namespace&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>&lt;operator-namespace&gt;
+</code></pre></div>
 <p>NamespaceスコープのOperatorでは <code>OperatorGroup</code> を作成します。</p>
-<pre><code class="language-yaml">apiVersion: operators.coreos.com/v1
-kind: OperatorGroup
-metadata:
-  name: &lt;operator-group-name&gt;
-  namespace: &lt;operator-namespace&gt;
-spec:
-  targetNamespaces:
-    - &lt;operator-namespace&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">operators.coreos.com/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OperatorGroup</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;operator-group-name&gt;</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;operator-namespace&gt;</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">targetNamespaces</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;operator-namespace&gt;</span>
+</code></pre></div>
 <p><code>Subscription</code> を作成します。</p>
-<pre><code class="language-yaml">apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
-metadata:
-  name: &lt;subscription-name&gt;
-  namespace: &lt;operator-namespace&gt;
-spec:
-  channel: &lt;channel&gt;
-  installPlanApproval: Automatic
-  name: &lt;package-name&gt;
-  source: redhat-operators
-  sourceNamespace: openshift-marketplace
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">operators.coreos.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subscription</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;subscription-name&gt;</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;operator-namespace&gt;</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;channel&gt;</span>
+<span class="w">  </span><span class="nt">installPlanApproval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Automatic</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;package-name&gt;</span>
+<span class="w">  </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redhat-operators</span>
+<span class="w">  </span><span class="nt">sourceNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openshift-marketplace</span>
+</code></pre></div>
 <p>導入状態を確認します。</p>
-<pre><code class="language-bash">oc get subscription -n &lt;operator-namespace&gt;
-oc get installplan -n &lt;operator-namespace&gt;
-oc get csv -n &lt;operator-namespace&gt;
-oc get crd | grep -i &lt;operator-keyword&gt;
-oc get pods -n &lt;operator-namespace&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>subscription<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;
+oc<span class="w"> </span>get<span class="w"> </span>installplan<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;
+oc<span class="w"> </span>get<span class="w"> </span>csv<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;
+oc<span class="w"> </span>get<span class="w"> </span>crd<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>&lt;operator-keyword&gt;
+oc<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;
+</code></pre></div>
 <h2 id="manual-approval">Manual Approval</h2>
 <p><code>installPlanApproval: Manual</code> の場合、InstallPlanを承認するまで導入や更新は進みません。</p>
-<pre><code class="language-bash">oc get installplan -n &lt;operator-namespace&gt;
-oc patch installplan &lt;installplan-name&gt; -n &lt;operator-namespace&gt; --type merge -p '{&quot;spec&quot;:{&quot;approved&quot;:true}}'
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>installplan<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;
+oc<span class="w"> </span>patch<span class="w"> </span>installplan<span class="w"> </span>&lt;installplan-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;<span class="w"> </span>--type<span class="w"> </span>merge<span class="w"> </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;:{&quot;approved&quot;:true}}&#39;</span>
+</code></pre></div>
 <h2 id="post-installation">Post Installation</h2>
 <ul>
 <li>Operator PodがRunningか確認します。</li>
@@ -2340,11 +2340,11 @@ oc patch installplan &lt;installplan-name&gt; -n &lt;operator-namespace&gt; --ty
 <li>RBAC、SCC、Webhook、DaemonSetなど、Operatorが作った関連リソースを把握します。</li>
 </ul>
 <h2 id="common-commands">Common Commands</h2>
-<pre><code class="language-bash">oc describe csv &lt;csv-name&gt; -n &lt;operator-namespace&gt;
-oc logs deploy/&lt;operator-deployment&gt; -n &lt;operator-namespace&gt;
-oc get events -n &lt;operator-namespace&gt; --sort-by=.lastTimestamp
-oc api-resources | grep -i &lt;operator-keyword&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>describe<span class="w"> </span>csv<span class="w"> </span>&lt;csv-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;
+oc<span class="w"> </span>logs<span class="w"> </span>deploy/&lt;operator-deployment&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;
+oc<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;<span class="w"> </span>--sort-by<span class="o">=</span>.lastTimestamp
+oc<span class="w"> </span>api-resources<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>&lt;operator-keyword&gt;
+</code></pre></div>
 <h2 id="sources">Sources</h2>
 <ul>
 <li>Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform</li>

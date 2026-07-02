@@ -2470,19 +2470,19 @@
 </ul>
 <h2 id="basic-checks">Basic Checks</h2>
 <p>Cluster Operatorの確認です。</p>
-<pre><code class="language-bash">oc get clusteroperators
-oc get co
-oc describe clusteroperator &lt;name&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>clusteroperators
+oc<span class="w"> </span>get<span class="w"> </span>co
+oc<span class="w"> </span>describe<span class="w"> </span>clusteroperator<span class="w"> </span>&lt;name&gt;
+</code></pre></div>
 <p>OLM管理Operatorの確認です。</p>
-<pre><code class="language-bash">oc get catalogsource -n openshift-marketplace
-oc get packagemanifest -n openshift-marketplace
-oc get subscriptions -A
-oc get installplan -A
-oc get csv -A
-oc get operatorgroup -A
-oc get crd | grep &lt;keyword&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>catalogsource<span class="w"> </span>-n<span class="w"> </span>openshift-marketplace
+oc<span class="w"> </span>get<span class="w"> </span>packagemanifest<span class="w"> </span>-n<span class="w"> </span>openshift-marketplace
+oc<span class="w"> </span>get<span class="w"> </span>subscriptions<span class="w"> </span>-A
+oc<span class="w"> </span>get<span class="w"> </span>installplan<span class="w"> </span>-A
+oc<span class="w"> </span>get<span class="w"> </span>csv<span class="w"> </span>-A
+oc<span class="w"> </span>get<span class="w"> </span>operatorgroup<span class="w"> </span>-A
+oc<span class="w"> </span>get<span class="w"> </span>crd<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;keyword&gt;
+</code></pre></div>
 <h2 id="sources">Sources</h2>
 <ul>
 <li>Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform</li>

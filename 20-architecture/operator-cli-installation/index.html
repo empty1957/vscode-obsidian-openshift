@@ -2507,9 +2507,9 @@
 </table>
 <h2 id="1-package-and-channel">1. Package And Channel</h2>
 <p>まず、Operatorパッケージ名とchannelを確認します。</p>
-<pre><code class="language-bash">oc get packagemanifest -n openshift-marketplace | grep -i &lt;keyword&gt;
-oc get packagemanifest &lt;package-name&gt; -n openshift-marketplace -o yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>packagemanifest<span class="w"> </span>-n<span class="w"> </span>openshift-marketplace<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>&lt;keyword&gt;
+oc<span class="w"> </span>get<span class="w"> </span>packagemanifest<span class="w"> </span>&lt;package-name&gt;<span class="w"> </span>-n<span class="w"> </span>openshift-marketplace<span class="w"> </span>-o<span class="w"> </span>yaml
+</code></pre></div>
 <p>確認する観点です。</p>
 <ul>
 <li><code>status.catalogSource</code>: 利用するCatalogSource名</li>
@@ -2520,41 +2520,41 @@ oc get packagemanifest &lt;package-name&gt; -n openshift-marketplace -o yaml
 </ul>
 <h2 id="2-namespace">2. Namespace</h2>
 <p>Operatorの推奨namespaceを作ります。Red Hat提供Operatorは、製品ごとに固定namespaceが推奨されることがあります。</p>
-<pre><code class="language-bash">oc create namespace &lt;operator-namespace&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>&lt;operator-namespace&gt;
+</code></pre></div>
 <p>例です。</p>
-<pre><code class="language-bash">oc create namespace metallb-system
-oc create namespace openshift-nmstate
-oc create namespace openshift-sriov-network-operator
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>metallb-system
+oc<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>openshift-nmstate
+oc<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>openshift-sriov-network-operator
+</code></pre></div>
 <h2 id="3-operatorgroup">3. OperatorGroup</h2>
 <p>namespaceスコープで導入する場合は <code>OperatorGroup</code> を作ります。</p>
-<pre><code class="language-yaml">apiVersion: operators.coreos.com/v1
-kind: OperatorGroup
-metadata:
-  name: &lt;operator-group-name&gt;
-  namespace: &lt;operator-namespace&gt;
-spec:
-  targetNamespaces:
-    - &lt;operator-namespace&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">operators.coreos.com/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OperatorGroup</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;operator-group-name&gt;</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;operator-namespace&gt;</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">targetNamespaces</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;operator-namespace&gt;</span>
+</code></pre></div>
 <p>クラスタ全体を監視するOperatorでは、Operatorのドキュメントに従って <code>targetNamespaces</code> を省略することがあります。1つのnamespaceに複数のOperatorGroupを置くとCSVが失敗しやすいため、既存の有無を先に確認します。</p>
-<pre><code class="language-bash">oc get operatorgroup -n &lt;operator-namespace&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>operatorgroup<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;
+</code></pre></div>
 <h2 id="4-subscription">4. Subscription</h2>
 <p><code>Subscription</code> はCLI導入の中心です。<code>name</code> にはpackage名、<code>source</code> にはCatalogSource名、<code>channel</code> には購読するchannelを指定します。</p>
-<pre><code class="language-yaml">apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
-metadata:
-  name: &lt;subscription-name&gt;
-  namespace: &lt;operator-namespace&gt;
-spec:
-  channel: &lt;channel&gt;
-  installPlanApproval: Automatic
-  name: &lt;package-name&gt;
-  source: redhat-operators
-  sourceNamespace: openshift-marketplace
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">operators.coreos.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subscription</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;subscription-name&gt;</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;operator-namespace&gt;</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;channel&gt;</span>
+<span class="w">  </span><span class="nt">installPlanApproval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Automatic</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;package-name&gt;</span>
+<span class="w">  </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redhat-operators</span>
+<span class="w">  </span><span class="nt">sourceNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openshift-marketplace</span>
+</code></pre></div>
 <p><code>installPlanApproval</code> の考え方です。</p>
 <ul>
 <li><code>Automatic</code>: InstallPlanが自動承認され、導入や更新が進みます。</li>
@@ -2562,39 +2562,39 @@ spec:
 </ul>
 <h2 id="5-apply-example">5. Apply Example</h2>
 <p>ファイルとして管理する場合の例です。</p>
-<pre><code class="language-bash">oc apply -f operatorgroup.yaml
-oc apply -f subscription.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>operatorgroup.yaml
+oc<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>subscription.yaml
+</code></pre></div>
 <p>インラインで一度だけ作る場合の例です。</p>
-<pre><code class="language-bash">oc apply -f - &lt;&lt;'EOF'
-apiVersion: operators.coreos.com/v1
-kind: OperatorGroup
-metadata:
-  name: example-operator-group
-  namespace: example-operator
-spec:
-  targetNamespaces:
-    - example-operator
----
-apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
-metadata:
-  name: example-operator
-  namespace: example-operator
-spec:
-  channel: stable
-  installPlanApproval: Manual
-  name: example-operator
-  source: redhat-operators
-  sourceNamespace: openshift-marketplace
-EOF
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<span class="s">apiVersion: operators.coreos.com/v1</span>
+<span class="s">kind: OperatorGroup</span>
+<span class="s">metadata:</span>
+<span class="s">  name: example-operator-group</span>
+<span class="s">  namespace: example-operator</span>
+<span class="s">spec:</span>
+<span class="s">  targetNamespaces:</span>
+<span class="s">    - example-operator</span>
+<span class="s">---</span>
+<span class="s">apiVersion: operators.coreos.com/v1alpha1</span>
+<span class="s">kind: Subscription</span>
+<span class="s">metadata:</span>
+<span class="s">  name: example-operator</span>
+<span class="s">  namespace: example-operator</span>
+<span class="s">spec:</span>
+<span class="s">  channel: stable</span>
+<span class="s">  installPlanApproval: Manual</span>
+<span class="s">  name: example-operator</span>
+<span class="s">  source: redhat-operators</span>
+<span class="s">  sourceNamespace: openshift-marketplace</span>
+<span class="s">EOF</span>
+</code></pre></div>
 <h2 id="6-installplan-approval">6. InstallPlan Approval</h2>
 <p>Manual承認では、InstallPlanを確認してから承認します。</p>
-<pre><code class="language-bash">oc get installplan -n &lt;operator-namespace&gt;
-oc describe installplan &lt;installplan-name&gt; -n &lt;operator-namespace&gt;
-oc patch installplan &lt;installplan-name&gt; -n &lt;operator-namespace&gt; --type merge -p '{&quot;spec&quot;:{&quot;approved&quot;:true}}'
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>installplan<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;
+oc<span class="w"> </span>describe<span class="w"> </span>installplan<span class="w"> </span>&lt;installplan-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;
+oc<span class="w"> </span>patch<span class="w"> </span>installplan<span class="w"> </span>&lt;installplan-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;<span class="w"> </span>--type<span class="w"> </span>merge<span class="w"> </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;:{&quot;approved&quot;:true}}&#39;</span>
+</code></pre></div>
 <p>確認する観点です。</p>
 <ul>
 <li>どのCSVへ更新されるか</li>
@@ -2603,81 +2603,81 @@ oc patch installplan &lt;installplan-name&gt; -n &lt;operator-namespace&gt; --ty
 <li>対象namespaceと権限範囲</li>
 </ul>
 <h2 id="7-verify-installation">7. Verify Installation</h2>
-<pre><code class="language-bash">oc get subscription -n &lt;operator-namespace&gt;
-oc get installplan -n &lt;operator-namespace&gt;
-oc get csv -n &lt;operator-namespace&gt;
-oc get pods -n &lt;operator-namespace&gt;
-oc get crd | grep -i &lt;operator-keyword&gt;
-oc describe csv &lt;csv-name&gt; -n &lt;operator-namespace&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>subscription<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;
+oc<span class="w"> </span>get<span class="w"> </span>installplan<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;
+oc<span class="w"> </span>get<span class="w"> </span>csv<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;
+oc<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;
+oc<span class="w"> </span>get<span class="w"> </span>crd<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>&lt;operator-keyword&gt;
+oc<span class="w"> </span>describe<span class="w"> </span>csv<span class="w"> </span>&lt;csv-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;operator-namespace&gt;
+</code></pre></div>
 <p>CSVが <code>Succeeded</code> になり、Operator PodがRunningになり、必要なCRDが作成されていればOperator導入は完了です。その後、Operator固有のCustom Resourceを作成します。</p>
 <h2 id="8-minimal-examples">8. Minimal Examples</h2>
 <h3 id="metallb-operator">MetalLB Operator</h3>
-<pre><code class="language-yaml">apiVersion: operators.coreos.com/v1
-kind: OperatorGroup
-metadata:
-  name: metallb-operator-group
-  namespace: metallb-system
-spec:
-  targetNamespaces:
-    - metallb-system
----
-apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
-metadata:
-  name: metallb-operator
-  namespace: metallb-system
-spec:
-  channel: stable
-  installPlanApproval: Automatic
-  name: metallb-operator
-  source: redhat-operators
-  sourceNamespace: openshift-marketplace
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">operators.coreos.com/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OperatorGroup</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metallb-operator-group</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metallb-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">targetNamespaces</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metallb-system</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">operators.coreos.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subscription</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metallb-operator</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metallb-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stable</span>
+<span class="w">  </span><span class="nt">installPlanApproval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Automatic</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metallb-operator</span>
+<span class="w">  </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redhat-operators</span>
+<span class="w">  </span><span class="nt">sourceNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openshift-marketplace</span>
+</code></pre></div>
 <h3 id="kubernetes-nmstate-operator">Kubernetes NMState Operator</h3>
-<pre><code class="language-yaml">apiVersion: operators.coreos.com/v1
-kind: OperatorGroup
-metadata:
-  name: openshift-nmstate
-  namespace: openshift-nmstate
-spec:
-  targetNamespaces:
-    - openshift-nmstate
----
-apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
-metadata:
-  name: kubernetes-nmstate-operator
-  namespace: openshift-nmstate
-spec:
-  channel: stable
-  installPlanApproval: Automatic
-  name: kubernetes-nmstate-operator
-  source: redhat-operators
-  sourceNamespace: openshift-marketplace
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">operators.coreos.com/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OperatorGroup</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openshift-nmstate</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openshift-nmstate</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">targetNamespaces</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openshift-nmstate</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">operators.coreos.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subscription</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes-nmstate-operator</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openshift-nmstate</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stable</span>
+<span class="w">  </span><span class="nt">installPlanApproval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Automatic</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes-nmstate-operator</span>
+<span class="w">  </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redhat-operators</span>
+<span class="w">  </span><span class="nt">sourceNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openshift-marketplace</span>
+</code></pre></div>
 <h3 id="sr-iov-network-operator">SR-IOV Network Operator</h3>
-<pre><code class="language-yaml">apiVersion: operators.coreos.com/v1
-kind: OperatorGroup
-metadata:
-  name: sriov-network-operators
-  namespace: openshift-sriov-network-operator
-spec:
-  targetNamespaces:
-    - openshift-sriov-network-operator
----
-apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
-metadata:
-  name: sriov-network-operator-subscription
-  namespace: openshift-sriov-network-operator
-spec:
-  channel: stable
-  installPlanApproval: Automatic
-  name: sriov-network-operator
-  source: redhat-operators
-  sourceNamespace: openshift-marketplace
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">operators.coreos.com/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OperatorGroup</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sriov-network-operators</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openshift-sriov-network-operator</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">targetNamespaces</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openshift-sriov-network-operator</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">operators.coreos.com/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subscription</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sriov-network-operator-subscription</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openshift-sriov-network-operator</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stable</span>
+<span class="w">  </span><span class="nt">installPlanApproval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Automatic</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sriov-network-operator</span>
+<span class="w">  </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redhat-operators</span>
+<span class="w">  </span><span class="nt">sourceNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openshift-marketplace</span>
+</code></pre></div>
 <h2 id="common-failure-points">Common Failure Points</h2>
 <ul>
 <li>package名とSubscription名を混同している</li>

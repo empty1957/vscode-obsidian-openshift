@@ -2176,11 +2176,11 @@
 <h1 id="pod-crashloopbackoff">Pod CrashLoopBackOff</h1>
 <p>Podが起動と終了を繰り返す場合の調査メモです。</p>
 <h2 id="commands">Commands</h2>
-<pre><code class="language-bash">oc get pod &lt;pod-name&gt; -o wide
-oc describe pod &lt;pod-name&gt;
-oc logs &lt;pod-name&gt; --previous
-oc get events --sort-by=.lastTimestamp
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>&lt;pod-name&gt;<span class="w"> </span>-o<span class="w"> </span>wide
+oc<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>&lt;pod-name&gt;
+oc<span class="w"> </span>logs<span class="w"> </span>&lt;pod-name&gt;<span class="w"> </span>--previous
+oc<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>--sort-by<span class="o">=</span>.lastTimestamp
+</code></pre></div>
 <h2 id="common-causes">Common Causes</h2>
 <ul>
 <li>アプリケーション起動エラー</li>

@@ -2386,39 +2386,39 @@
 <li><code>IPAddressPool</code> と <code>L2Advertisement</code> または <code>BGPPeer</code> / <code>BGPAdvertisement</code> を作成します。</li>
 </ol>
 <h2 id="installation-cli">Installation: CLI</h2>
-<pre><code class="language-bash">oc create namespace metallb-system
-oc get packagemanifest -n openshift-marketplace | grep -i metallb
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>metallb-system
+oc<span class="w"> </span>get<span class="w"> </span>packagemanifest<span class="w"> </span>-n<span class="w"> </span>openshift-marketplace<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>metallb
+</code></pre></div>
 <p><code>Subscription</code> と必要に応じて <code>OperatorGroup</code> を作成し、CSVを確認します。</p>
-<pre><code class="language-bash">oc get csv -n metallb-system
-oc get crd | grep -i metallb
-oc get pods -n metallb-system
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>csv<span class="w"> </span>-n<span class="w"> </span>metallb-system
+oc<span class="w"> </span>get<span class="w"> </span>crd<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>metallb
+oc<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>metallb-system
+</code></pre></div>
 <p>最小構成の例です。</p>
-<pre><code class="language-yaml">apiVersion: metallb.io/v1beta1
-kind: MetalLB
-metadata:
-  name: metallb
-  namespace: metallb-system
----
-apiVersion: metallb.io/v1beta1
-kind: IPAddressPool
-metadata:
-  name: app-pool
-  namespace: metallb-system
-spec:
-  addresses:
-    - 192.0.2.100-192.0.2.120
----
-apiVersion: metallb.io/v1beta1
-kind: L2Advertisement
-metadata:
-  name: app-l2
-  namespace: metallb-system
-spec:
-  ipAddressPools:
-    - app-pool
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metallb.io/v1beta1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MetalLB</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metallb</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metallb-system</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metallb.io/v1beta1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPAddressPool</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-pool</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metallb-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.100-192.0.2.120</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metallb.io/v1beta1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">L2Advertisement</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-l2</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metallb-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ipAddressPools</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-pool</span>
+</code></pre></div>
 <h2 id="related-resources">Related Resources</h2>
 <ul>
 <li><code>Service</code> <code>type: LoadBalancer</code>: MetalLBが外部IPを割り当てる対象です。</li>
@@ -2436,12 +2436,12 @@ spec:
 <li>複数ネットワークや複数ラックをまたぐ場合は、障害ドメインと経路制御を明確にします。</li>
 </ul>
 <h2 id="operations">Operations</h2>
-<pre><code class="language-bash">oc get metallb -A
-oc get ipaddresspool -A
-oc get l2advertisement -A
-oc get bgppeer -A
-oc get svc -A | grep LoadBalancer
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>metallb<span class="w"> </span>-A
+oc<span class="w"> </span>get<span class="w"> </span>ipaddresspool<span class="w"> </span>-A
+oc<span class="w"> </span>get<span class="w"> </span>l2advertisement<span class="w"> </span>-A
+oc<span class="w"> </span>get<span class="w"> </span>bgppeer<span class="w"> </span>-A
+oc<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-A<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>LoadBalancer
+</code></pre></div>
 <h2 id="failure-patterns">Failure Patterns</h2>
 <ul>
 <li><code>EXTERNAL-IP</code> が <code>pending</code> のままになる</li>

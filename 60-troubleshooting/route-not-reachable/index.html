@@ -2176,12 +2176,12 @@
 <h1 id="route-not-reachable">Route Not Reachable</h1>
 <p>Route経由でアプリケーションへ到達できない場合の調査メモです。</p>
 <h2 id="commands">Commands</h2>
-<pre><code class="language-bash">oc get route
-oc describe route &lt;route-name&gt;
-oc get svc &lt;service-name&gt; -o yaml
-oc get endpoints &lt;service-name&gt;
-oc get pod -l &lt;label-selector&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>route
+oc<span class="w"> </span>describe<span class="w"> </span>route<span class="w"> </span>&lt;route-name&gt;
+oc<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>&lt;service-name&gt;<span class="w"> </span>-o<span class="w"> </span>yaml
+oc<span class="w"> </span>get<span class="w"> </span>endpoints<span class="w"> </span>&lt;service-name&gt;
+oc<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span>&lt;label-selector&gt;
+</code></pre></div>
 <h2 id="checkpoints">Checkpoints</h2>
 <ul>
 <li>Routeのhostが正しいか</li>

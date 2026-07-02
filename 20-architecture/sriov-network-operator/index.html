@@ -2386,31 +2386,31 @@
 <li><code>SriovNetwork</code> を作成してPodから利用する追加ネットワークを定義します。</li>
 </ol>
 <h2 id="installation-cli">Installation: CLI</h2>
-<pre><code class="language-bash">oc create namespace openshift-sriov-network-operator
-oc get packagemanifest -n openshift-marketplace | grep -i sriov
-oc get csv -n openshift-sriov-network-operator
-oc get pods -n openshift-sriov-network-operator
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>openshift-sriov-network-operator
+oc<span class="w"> </span>get<span class="w"> </span>packagemanifest<span class="w"> </span>-n<span class="w"> </span>openshift-marketplace<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>sriov
+oc<span class="w"> </span>get<span class="w"> </span>csv<span class="w"> </span>-n<span class="w"> </span>openshift-sriov-network-operator
+oc<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>openshift-sriov-network-operator
+</code></pre></div>
 <p>検出状態を確認します。</p>
-<pre><code class="language-bash">oc get sriovnetworknodestate -n openshift-sriov-network-operator
-oc describe sriovnetworknodestate &lt;node-name&gt; -n openshift-sriov-network-operator
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>sriovnetworknodestate<span class="w"> </span>-n<span class="w"> </span>openshift-sriov-network-operator
+oc<span class="w"> </span>describe<span class="w"> </span>sriovnetworknodestate<span class="w"> </span>&lt;node-name&gt;<span class="w"> </span>-n<span class="w"> </span>openshift-sriov-network-operator
+</code></pre></div>
 <p>Policy例です。</p>
-<pre><code class="language-yaml">apiVersion: sriovnetwork.openshift.io/v1
-kind: SriovNetworkNodePolicy
-metadata:
-  name: worker-pf0-netdevice
-  namespace: openshift-sriov-network-operator
-spec:
-  nodeSelector:
-    feature.node.kubernetes.io/network-sriov.capable: &quot;true&quot;
-  resourceName: sriov_pf0
-  numVfs: 8
-  nicSelector:
-    pfNames:
-      - ens5f0
-  deviceType: netdevice
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sriovnetwork.openshift.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SriovNetworkNodePolicy</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">worker-pf0-netdevice</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openshift-sriov-network-operator</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">nodeSelector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">feature.node.kubernetes.io/network-sriov.capable</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">  </span><span class="nt">resourceName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sriov_pf0</span>
+<span class="w">  </span><span class="nt">numVfs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span>
+<span class="w">  </span><span class="nt">nicSelector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">pfNames</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ens5f0</span>
+<span class="w">  </span><span class="nt">deviceType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netdevice</span>
+</code></pre></div>
 <h2 id="related-resources">Related Resources</h2>
 <ul>
 <li><code>SriovNetworkNodePolicy</code>: VF数、対象PF、deviceType、resourceNameを定義します。</li>
@@ -2430,12 +2430,12 @@ spec:
 <li><code>netdevice</code> と <code>vfio-pci</code> のどちらを使うかはワークロード要件で判断します。</li>
 </ul>
 <h2 id="basic-checks">Basic Checks</h2>
-<pre><code class="language-bash">oc get sriovnetworknodepolicy -n openshift-sriov-network-operator
-oc get sriovnetworknodestate -n openshift-sriov-network-operator
-oc get sriovnetwork -A
-oc get network-attachment-definitions -A
-oc describe node &lt;node-name&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>sriovnetworknodepolicy<span class="w"> </span>-n<span class="w"> </span>openshift-sriov-network-operator
+oc<span class="w"> </span>get<span class="w"> </span>sriovnetworknodestate<span class="w"> </span>-n<span class="w"> </span>openshift-sriov-network-operator
+oc<span class="w"> </span>get<span class="w"> </span>sriovnetwork<span class="w"> </span>-A
+oc<span class="w"> </span>get<span class="w"> </span>network-attachment-definitions<span class="w"> </span>-A
+oc<span class="w"> </span>describe<span class="w"> </span>node<span class="w"> </span>&lt;node-name&gt;
+</code></pre></div>
 <h2 id="failure-patterns">Failure Patterns</h2>
 <ul>
 <li>対象NodeでSR-IOV対応NICが検出されない</li>

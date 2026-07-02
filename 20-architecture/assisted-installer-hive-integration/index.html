@@ -579,6 +579,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#code-level-flow" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2201,6 +2212,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#code-level-flow" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2366,6 +2388,39 @@
 </tr>
 </tbody>
 </table>
+<h2 id="architecture-diagram">Architecture Diagram</h2>
+<p>RHACM/MCEでAssisted Installerを使う場合は、Hubクラスタ上のCRD、Assisted Service、Discovery ISOで起動したHost、完成後のSpokeクラスタを分けて見ると理解しやすくなります。</p>
+<pre class="mermaid"><code>flowchart LR
+  subgraph Hub["Hub Cluster (RHACM / MCE)"]
+    CD["ClusterDeployment"]
+    ACI["AgentClusterInstall"]
+    IE["InfraEnv"]
+    AG["Agent CRs"]
+    AS["Assisted Service"]
+    MC["ManagedCluster"]
+  end
+
+  subgraph Hosts["Bare Metal Hosts"]
+    ISO["Discovery ISO"]
+    HA["Host Agent"]
+  end
+
+  subgraph Spoke["Installed Spoke Cluster"]
+    API["OpenShift API"]
+    Nodes["Control Plane / Worker Nodes"]
+  end
+
+  CD --&gt; ACI
+  CD --&gt; MC
+  ACI --&gt; AS
+  IE --&gt; ISO
+  ISO --&gt; HA
+  HA --&gt; AG
+  AG --&gt; AS
+  AS --&gt; ACI
+  AS --&gt; API
+  API --&gt; Nodes
+  MC -. imports and manages .-&gt; API</code></pre>
 <h2 id="code-level-flow">Code Level Flow</h2>
 <ol>
 <li>HubクラスタにRHACM/MCE、Hive、Assisted Service関連コンポーネントが用意されます。</li>
@@ -2381,76 +2436,76 @@
 </ol>
 <h2 id="minimal-resource-shape">Minimal Resource Shape</h2>
 <p><code>ClusterDeployment</code> は <code>AgentClusterInstall</code> を参照します。</p>
-<pre><code class="language-yaml">apiVersion: hive.openshift.io/v1
-kind: ClusterDeployment
-metadata:
-  name: spoke01
-  namespace: spoke01
-spec:
-  baseDomain: example.com
-  clusterName: spoke01
-  clusterInstallRef:
-    group: extensions.hive.openshift.io
-    kind: AgentClusterInstall
-    name: spoke01
-    version: v1beta1
-  platform:
-    agentBareMetal:
-      agentSelector:
-        matchLabels:
-          cluster-name: spoke01
-  pullSecretRef:
-    name: pull-secret
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hive.openshift.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterDeployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spoke01</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spoke01</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">baseDomain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example.com</span>
+<span class="w">  </span><span class="nt">clusterName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spoke01</span>
+<span class="w">  </span><span class="nt">clusterInstallRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extensions.hive.openshift.io</span>
+<span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AgentClusterInstall</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spoke01</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span>
+<span class="w">  </span><span class="nt">platform</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">agentBareMetal</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">agentSelector</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">cluster-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spoke01</span>
+<span class="w">  </span><span class="nt">pullSecretRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pull-secret</span>
+</code></pre></div>
 <p><code>AgentClusterInstall</code> はクラスタのインストール要件を定義します。</p>
-<pre><code class="language-yaml">apiVersion: extensions.hive.openshift.io/v1beta1
-kind: AgentClusterInstall
-metadata:
-  name: spoke01
-  namespace: spoke01
-spec:
-  clusterDeploymentRef:
-    name: spoke01
-  imageSetRef:
-    name: openshift-v4.16.0
-  networking:
-    clusterNetwork:
-      - cidr: 10.128.0.0/14
-        hostPrefix: 23
-    machineNetwork:
-      - cidr: 192.0.2.0/24
-    serviceNetwork:
-      - 172.30.0.0/16
-    networkType: OVNKubernetes
-  provisionRequirements:
-    controlPlaneAgents: 3
-    workerAgents: 2
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extensions.hive.openshift.io/v1beta1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AgentClusterInstall</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spoke01</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spoke01</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">clusterDeploymentRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spoke01</span>
+<span class="w">  </span><span class="nt">imageSetRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openshift-v4.16.0</span>
+<span class="w">  </span><span class="nt">networking</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">clusterNetwork</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.128.0.0/14</span>
+<span class="w">        </span><span class="nt">hostPrefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">23</span>
+<span class="w">    </span><span class="nt">machineNetwork</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.0/24</span>
+<span class="w">    </span><span class="nt">serviceNetwork</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.30.0.0/16</span>
+<span class="w">    </span><span class="nt">networkType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OVNKubernetes</span>
+<span class="w">  </span><span class="nt">provisionRequirements</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">controlPlaneAgents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">workerAgents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</code></pre></div>
 <p><code>InfraEnv</code> はDiscovery ISO生成の入力です。</p>
-<pre><code class="language-yaml">apiVersion: agent-install.openshift.io/v1beta1
-kind: InfraEnv
-metadata:
-  name: spoke01
-  namespace: spoke01
-spec:
-  clusterRef:
-    name: spoke01
-    namespace: spoke01
-  pullSecretRef:
-    name: pull-secret
-  sshAuthorizedKey: ssh-rsa AAAA...
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">agent-install.openshift.io/v1beta1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InfraEnv</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spoke01</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spoke01</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">clusterRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spoke01</span>
+<span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spoke01</span>
+<span class="w">  </span><span class="nt">pullSecretRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pull-secret</span>
+<span class="w">  </span><span class="nt">sshAuthorizedKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ssh-rsa AAAA...</span>
+</code></pre></div>
 <p>Hostが登録されたら <code>Agent</code> を確認し、必要に応じて承認します。</p>
-<pre><code class="language-bash">oc get infraenv -n spoke01
-oc get agent -n spoke01
-oc patch agent &lt;agent-name&gt; -n spoke01 --type merge -p '{&quot;spec&quot;:{&quot;approved&quot;:true}}'
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>infraenv<span class="w"> </span>-n<span class="w"> </span>spoke01
+oc<span class="w"> </span>get<span class="w"> </span>agent<span class="w"> </span>-n<span class="w"> </span>spoke01
+oc<span class="w"> </span>patch<span class="w"> </span>agent<span class="w"> </span>&lt;agent-name&gt;<span class="w"> </span>-n<span class="w"> </span>spoke01<span class="w"> </span>--type<span class="w"> </span>merge<span class="w"> </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;:{&quot;approved&quot;:true}}&#39;</span>
+</code></pre></div>
 <h2 id="conditions-to-watch">Conditions To Watch</h2>
-<pre><code class="language-bash">oc get agentclusterinstall -n spoke01
-oc get agentclusterinstall spoke01 -n spoke01 -o jsonpath='{range .status.conditions[*]}{.type}{&quot;\t&quot;}{.status}{&quot;\t&quot;}{.message}{&quot;\n&quot;}{end}'
-oc get agent -n spoke01
-oc get agent -n spoke01 -o jsonpath='{range .items[*]}{.metadata.name}{&quot;\t&quot;}{.status.inventory.hostname}{&quot;\t&quot;}{range .status.conditions[*]}{.type}={.status}{&quot; &quot;}{end}{&quot;\n&quot;}{end}'
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>agentclusterinstall<span class="w"> </span>-n<span class="w"> </span>spoke01
+oc<span class="w"> </span>get<span class="w"> </span>agentclusterinstall<span class="w"> </span>spoke01<span class="w"> </span>-n<span class="w"> </span>spoke01<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{range .status.conditions[*]}{.type}{&quot;\t&quot;}{.status}{&quot;\t&quot;}{.message}{&quot;\n&quot;}{end}&#39;</span>
+oc<span class="w"> </span>get<span class="w"> </span>agent<span class="w"> </span>-n<span class="w"> </span>spoke01
+oc<span class="w"> </span>get<span class="w"> </span>agent<span class="w"> </span>-n<span class="w"> </span>spoke01<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{range .items[*]}{.metadata.name}{&quot;\t&quot;}{.status.inventory.hostname}{&quot;\t&quot;}{range .status.conditions[*]}{.type}={.status}{&quot; &quot;}{end}{&quot;\n&quot;}{end}&#39;</span>
+</code></pre></div>
 <p>よく見る条件です。</p>
 <ul>
 <li><code>SpecSynced</code>: CRの内容がAssisted Serviceへ反映されているか</li>
@@ -2522,7 +2577,7 @@ oc get agent -n spoke01 -o jsonpath='{range .items[*]}{.metadata.name}{&quot;\t&
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月2日 15:38:13 JST">2026年7月2日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月2日 16:45:13 JST">2026年7月2日</span>
   </span>
 
     
@@ -2532,7 +2587,7 @@ oc get agent -n spoke01 -o jsonpath='{range .items[*]}{.metadata.name}{&quot;\t&
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月2日 15:38:13 JST">2026年7月2日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月2日 16:45:13 JST">2026年7月2日</span>
   </span>
 
     

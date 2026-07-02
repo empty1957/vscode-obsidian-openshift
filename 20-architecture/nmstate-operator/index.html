@@ -2379,37 +2379,37 @@
 <li><code>NodeNetworkConfigurationPolicy</code> を小さな対象Nodeから適用します。</li>
 </ol>
 <h2 id="installation-cli">Installation: CLI</h2>
-<pre><code class="language-bash">oc get packagemanifest -n openshift-marketplace | grep -i nmstate
-oc get csv -n openshift-nmstate
-oc get pods -n openshift-nmstate
-oc get crd | grep -i nmstate
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>packagemanifest<span class="w"> </span>-n<span class="w"> </span>openshift-marketplace<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>nmstate
+oc<span class="w"> </span>get<span class="w"> </span>csv<span class="w"> </span>-n<span class="w"> </span>openshift-nmstate
+oc<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>openshift-nmstate
+oc<span class="w"> </span>get<span class="w"> </span>crd<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>nmstate
+</code></pre></div>
 <p>Policy例です。</p>
-<pre><code class="language-yaml">apiVersion: nmstate.io/v1
-kind: NodeNetworkConfigurationPolicy
-metadata:
-  name: br-external
-spec:
-  nodeSelector:
-    node-role.kubernetes.io/worker: &quot;&quot;
-  desiredState:
-    interfaces:
-      - name: br-external
-        type: linux-bridge
-        state: up
-        bridge:
-          options:
-            stp:
-              enabled: false
-          port:
-            - name: ens6
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmstate.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NodeNetworkConfigurationPolicy</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">br-external</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">nodeSelector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">node-role.kubernetes.io/worker</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">  </span><span class="nt">desiredState</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">interfaces</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">br-external</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux-bridge</span>
+<span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">up</span>
+<span class="w">        </span><span class="nt">bridge</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">stp</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">          </span><span class="nt">port</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ens6</span>
+</code></pre></div>
 <p>状態確認です。</p>
-<pre><code class="language-bash">oc get nns
-oc get nncp
-oc get nnce
-oc describe nnce br-external.&lt;node-name&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>nns
+oc<span class="w"> </span>get<span class="w"> </span>nncp
+oc<span class="w"> </span>get<span class="w"> </span>nnce
+oc<span class="w"> </span>describe<span class="w"> </span>nnce<span class="w"> </span>br-external.&lt;node-name&gt;
+</code></pre></div>
 <h2 id="related-resources">Related Resources</h2>
 <ul>
 <li><code>NMState</code>: Operatorのインスタンス作成に使われるリソースです。</li>
@@ -2435,12 +2435,12 @@ oc describe nnce br-external.&lt;node-name&gt;
 <li>適用後は <code>NodeNetworkConfigurationEnactment</code> の状態を確認します。</li>
 </ul>
 <h2 id="basic-checks">Basic Checks</h2>
-<pre><code class="language-bash">oc get nns
-oc get nncp
-oc get nnce
-oc describe nncp &lt;policy-name&gt;
-oc describe nnce &lt;policy-name&gt;.&lt;node-name&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>nns
+oc<span class="w"> </span>get<span class="w"> </span>nncp
+oc<span class="w"> </span>get<span class="w"> </span>nnce
+oc<span class="w"> </span>describe<span class="w"> </span>nncp<span class="w"> </span>&lt;policy-name&gt;
+oc<span class="w"> </span>describe<span class="w"> </span>nnce<span class="w"> </span>&lt;policy-name&gt;.&lt;node-name&gt;
+</code></pre></div>
 <h2 id="failure-patterns">Failure Patterns</h2>
 <ul>
 <li>既存インターフェース名がNode間で異なる</li>

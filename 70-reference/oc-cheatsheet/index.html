@@ -2198,25 +2198,25 @@
 <h1 id="oc-cheatsheet">oc Cheatsheet</h1>
 <p>よく使う<code>oc</code>コマンドのメモです。</p>
 <h2 id="login-and-context">Login and Context</h2>
-<pre><code class="language-bash">oc login &lt;api-url&gt;
-oc whoami
-oc project
-oc projects
-oc project &lt;project-name&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>login<span class="w"> </span>&lt;api-url&gt;
+oc<span class="w"> </span>whoami
+oc<span class="w"> </span>project
+oc<span class="w"> </span>projects
+oc<span class="w"> </span>project<span class="w"> </span>&lt;project-name&gt;
+</code></pre></div>
 <h2 id="inspect">Inspect</h2>
-<pre><code class="language-bash">oc get all
-oc get pods -o wide
-oc describe pod &lt;pod-name&gt;
-oc logs &lt;pod-name&gt;
-oc logs deploy/&lt;deployment-name&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>all
+oc<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
+oc<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>&lt;pod-name&gt;
+oc<span class="w"> </span>logs<span class="w"> </span>&lt;pod-name&gt;
+oc<span class="w"> </span>logs<span class="w"> </span>deploy/&lt;deployment-name&gt;
+</code></pre></div>
 <h2 id="apply">Apply</h2>
-<pre><code class="language-bash">oc apply -f &lt;file&gt;
-oc delete -f &lt;file&gt;
-oc rollout status deploy/&lt;deployment-name&gt;
-oc rollout undo deploy/&lt;deployment-name&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>&lt;file&gt;
+oc<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>&lt;file&gt;
+oc<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deploy/&lt;deployment-name&gt;
+oc<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deploy/&lt;deployment-name&gt;
+</code></pre></div>
 <h2 id="sources">Sources</h2>
 <ul>
 <li>Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform</li>
