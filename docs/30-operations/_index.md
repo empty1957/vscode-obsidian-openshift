@@ -10,6 +10,11 @@
 - [[30-operations/operator-installation-runbook|Operator Installation Runbook]]
 - [[30-operations/assisted-installer|Assisted Installer Operations]]
 - [[30-operations/openstack-logging|OpenStack Logging]]
+- [[30-operations/node-maintenance-drain|Node Maintenance Drain]]
+- [[30-operations/certificate-expiry-check|Certificate Expiry Check]]
+- [[30-operations/project-resource-quota|Project Resource Quota]]
+- [[30-operations/image-registry-health|Image Registry Health]]
+- [[30-operations/etcd-snapshot-check|etcd Snapshot Check]]
 
 ## Sources
 
