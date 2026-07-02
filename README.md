@@ -1,3 +1,7 @@
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
 # OpenShift Knowledge Base
 
 VS Code の Foam 拡張機能と MkDocs で扱う OpenShift ナレッジベースです。
@@ -91,3 +95,67 @@ GitHub 側では、リポジトリの **Settings > Pages > Build and deployment*
 pip install -r requirements.txt
 mkdocs serve
 ```
+=======
+=======
+>>>>>>> theirs
+=======
+>>>>>>> theirs
+=======
+>>>>>>> theirs
+# CKA Practice Simulator Container
+
+This repository contains a lightweight, local CKA-style practice simulator inspired by browser-based exam labs. It is **not affiliated with or endorsed by Killer Shell, CNCF, or the Linux Foundation**.
+
+The simulator is packaged as a container image. When started with the required privileges, it launches a single-node Kubernetes cluster using K3s, installs a set of practice tasks, and provides grading commands.
+
+## Build the image
+
+```bash
+docker build -t cka-practice-sim:local .
+```
+
+## Run the simulator
+
+K3s needs cgroups and privileged container access:
+
+```bash
+docker run --rm -it --privileged \
+  --tmpfs /run --tmpfs /var/run \
+  -v cka-practice-sim-data:/var/lib/rancher/k3s \
+  cka-practice-sim:local
+```
+
+After the prompt appears, use these commands:
+
+```bash
+questions     # print the practice questions
+status        # show cluster readiness and available helpers
+grade         # grade all implemented tasks
+reset-lab     # remove task resources and start again
+```
+
+## Included practice tasks
+
+1. Create a namespace and deployment.
+2. Expose the deployment with a ClusterIP service.
+3. Create a ConfigMap and mount it into a pod.
+4. Add a NetworkPolicy that restricts ingress to selected pods.
+5. Create a PersistentVolumeClaim.
+
+The tasks are intentionally small so the image can be used as a repeatable smoke-testable practice environment. Add more tasks by editing `lab/questions.md`, `lab/setup.sh`, `lab/grade.sh`, and `lab/reset.sh`.
+
+## Notes
+
+- This is a local practice environment, not a copy of any paid exam simulator.
+- The image downloads K3s at build time from the official K3s install script.
+- Some Kubernetes features depend on the host kernel and container runtime. If K3s fails to start, verify that the container was launched with `--privileged`.
+<<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+>>>>>>> theirs
+=======
+>>>>>>> theirs
+=======
+>>>>>>> theirs
+=======
+>>>>>>> theirs
