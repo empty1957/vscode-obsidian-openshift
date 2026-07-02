@@ -6,6 +6,9 @@ theme:
 
 docs_dir: docs
 
+extra_css:
+  - stylesheets/extra.css
+
 plugins:
   - search
   - ezlinks:
