@@ -1,108 +1,99 @@
-# Assisted Installer
+# Assisted Installer Operations
 
-Assisted Installerは、OpenShiftクラスタのインストールを支援する仕組みです。特にbare metal、edge、remote site、restricted networkなど、手作業の前提確認が多い環境で、ホスト検出、事前検証、インストール進行管理を助けます。
+RHACMまたはmulticluster engineのHubクラスタでAssisted Installerを運用する場合の確認ポイントです。設計モデルは [[20-architecture/assisted-installer-hive-integration|Assisted Installer Hive Integration]] を参照します。
 
-## Components
+## Scope
 
-- Assisted Service: クラスタ定義、ホスト情報、validation、install workflowを管理するサービス
-- Assisted Installer: 対象ホスト上でインストール処理を実行するコンポーネント
-- Discovery ISO: ホストを起動し、Assisted Serviceへinventoryを送るためのISO
-- Agent: ホスト情報収集、接続、インストール処理を担うエージェント
+このノートでは、Assisted InstallerをRHACM/MCE + Hive連携として扱います。Hub上の `ClusterDeployment`、`AgentClusterInstall`、`InfraEnv`、`Agent`、`NMStateConfig` を確認しながら、Spokeクラスタの作成状態を追います。
 
-## Code Level Flow
-
-Assisted Installerは、OperatorHubで導入する通常のDay 2 Operatorとは異なり、OpenShiftクラスタを作る前後のインストール状態をAPIとAgentで管理します。
-
-1. ユーザーがAssisted Serviceへcluster definitionを作成します。cluster name、base domain、OpenShift version、pull secret、network、VIP、host requirementsなどが保存されます。
-2. Assisted ServiceはDiscovery ISOを生成します。ISOにはrendezvous先、pull secret、SSH key、network設定などが埋め込まれます。
-3. HostがDiscovery ISOで起動するとAgentがAssisted Serviceへinventoryを送ります。CPU、memory、disk、NIC、MAC、IP、boot mode、platform情報などが含まれます。
-4. Assisted Serviceのvalidation engineがclusterとhostの条件を評価します。DNS、NTP、network connectivity、disk size、CPU/memory、role assignmentなどの結果がstatusに反映されます。
-5. install開始時にAssisted Serviceが各Hostへ役割と手順を配布します。
-6. Assisted Installerがhost上で ignition、bootkube、machine config、kubelet起動、control plane join、worker joinに関係する処理を進めます。
-7. 各Host Agentがprogress eventとlogsをAssisted Serviceへ送り、UI/APIにinstalling、installed、errorなどの状態が表示されます。
-8. cluster APIが利用可能になると、通常の `oc get clusterversion`、`oc get co`、`oc get nodes` で状態確認できる段階に移ります。
-
-コードの見方としては、Assisted Service側はcluster/host state machineとvalidation、Assisted Installer側はhost上でのinstall step実行、Agent側はinventory収集とイベント送信、という責務分離で追うと理解しやすいです。
-
-## Operations: GUI
-
-1. Hybrid Cloud ConsoleまたはAssisted Installer UIでクラスタ作成を開始します。
-2. OpenShift version、cluster name、base domain、pull secret、SSH keyを入力します。
-3. Networking画面でDHCP/static、machine network、API VIP、Ingress VIPを設定します。
-4. Discovery ISOを生成して各Hostを起動します。
-5. Host inventoryとvalidation resultを確認します。
-6. Host roleをcontrol planeまたはworkerへ割り当てます。
-7. すべてのrequired validationが通ったらInstallを開始します。
-8. Events、host progress、logsを見ながら完了を確認します。
-
-## Operations: CLI/API
-
-Assisted Installerは環境により `aicli`、Assisted Service API、Agent-based Installer、またはRed Hat Hybrid Cloud ConsoleのAPIを使います。ここでは確認観点を中心にします。
+## Primary Checks
 
 ```bash
-oc get nodes
-oc get clusterversion
-oc get co
-oc get pods -A | grep -v Running
+oc get clusterdeployment -A
+oc get agentclusterinstall -A
+oc get infraenv -A
+oc get agent -A
+oc get managedcluster
 ```
 
-Agent-based Installerを使う場合は、`install-config.yaml`、`agent-config.yaml`、ISO生成、Host起動、install wait-for completeという流れで扱います。
+対象namespaceを絞って確認します。
 
 ```bash
-openshift-install agent create image
-openshift-install agent wait-for bootstrap-complete
-openshift-install agent wait-for install-complete
+NS=<cluster-namespace>
+oc get clusterdeployment -n $NS
+oc get agentclusterinstall -n $NS
+oc get infraenv -n $NS
+oc get agent -n $NS -o wide
 ```
 
-## Related Resources
-
-- Cluster definition: Assisted Serviceが管理するクラスタ単位の設定です。
-- Host inventory: 各Hostから収集されたハードウェアとネットワーク情報です。
-- Validation result: install可能性を判定するチェック結果です。
-- Discovery ISO: Agent起動とinventory送信のためのISOです。
-- Agent events: Hostごとの進行状況やエラーです。
-- `install-config.yaml`: OpenShiftインストール設定です。
-- `agent-config.yaml`: Agent-based InstallerのHost、role、rendezvous IPなどを定義します。
-- `ClusterVersion`: インストール後のクラスタバージョン状態です。
-- `ClusterOperator`: インストール後のOpenShift基盤Operator状態です。
-
-## Operational Flow
-
-1. クラスタ名、base domain、OpenShift version、pull secret、SSH keyを準備します。
-2. bare metal hosts、network、VIP、install configを定義します。
-3. Discovery ISOでホストを起動します。
-4. CPU、memory、disk、network、DNS、NTPなどのvalidationを確認します。
-5. 必要な修正を行い、installを開始します。
-6. Bootstrap、control plane、worker joinの進行を確認します。
-
-## Design Points
-
-- API VIPとIngress VIPの配置を事前に決めます。
-- DHCPかstatic networkかを明確にします。
-- disconnected環境ではmirror registryとImageContentSourcePolicy関連を準備します。
-- NTP、DNS、reverse DNS、default gatewayは失敗原因になりやすいです。
-- Day 2でNodeを追加する場合も、同じネットワーク前提を再確認します。
-
-## Basic Checks
+## Cluster Install Conditions
 
 ```bash
-oc get nodes
-oc get clusterversion
-oc get co
-oc get events -A --sort-by=.lastTimestamp
+oc get agentclusterinstall <name> -n <namespace> -o jsonpath='{range .status.conditions[*]}{.type}{"\t"}{.status}{"\t"}{.message}{"\n"}{end}'
 ```
 
-Assisted Service側では、host inventory、validation result、installation events、agent logsを確認します。
+見る条件です。
 
-## Repositories
+- `SpecSynced`: `AgentClusterInstall` の内容がAssisted Serviceへ同期されているか
+- `Validated`: クラスタvalidationが通っているか
+- `RequirementsMet`: 必要Host数、Agent承認、role、validationがそろっているか
+- `Completed`: インストール完了か
+- `Failed`: 失敗していないか
 
-- Assisted Installer: https://github.com/openshift/assisted-installer
-- Assisted Service: https://github.com/openshift/assisted-service
+## Agent Checks
+
+```bash
+oc get agent -n <namespace>
+oc describe agent <agent-name> -n <namespace>
+oc get agent <agent-name> -n <namespace> -o jsonpath='{.status.inventory.hostname}{"\n"}{.status.inventory.interfaces}{"\n"}'
+```
+
+Hostをインストール対象にするには、通常 `approved` が必要です。
+
+```bash
+oc patch agent <agent-name> -n <namespace> --type merge -p '{"spec":{"approved":true}}'
+```
+
+roleやinstallation diskも、環境に応じて明示します。
+
+```bash
+oc patch agent <agent-name> -n <namespace> --type merge -p '{"spec":{"role":"master"}}'
+oc patch agent <agent-name> -n <namespace> --type merge -p '{"spec":{"installation_disk_id":"/dev/disk/by-id/<disk-id>"}}'
+```
+
+## InfraEnv And ISO
+
+```bash
+oc get infraenv <name> -n <namespace> -o yaml
+oc get infraenv <name> -n <namespace> -o jsonpath='{.status.isoDownloadURL}{"\n"}'
+```
+
+ISOが生成されない場合は、pull secret、proxy、SSH key、mirror registry、CA証明書、NMStateConfig selectorを確認します。
+
+## Static Network
+
+静的IPや複数NICを使う場合は、`NMStateConfig` と `InfraEnv.spec.nmStateConfigLabelSelector` の対応を確認します。
+
+```bash
+oc get nmstateconfig -n <namespace>
+oc describe nmstateconfig <name> -n <namespace>
+oc get infraenv <name> -n <namespace> -o jsonpath='{.spec.nmStateConfigLabelSelector}{"\n"}'
+```
+
+## Common Failure Patterns
+
+- Hostが `Agent` として登録されない
+- `Agent` はいるが `Connected` や `Validated` が通らない
+- `Agent.spec.approved` がfalseのまま
+- `AgentClusterInstall` の必要Host数に達していない
+- `ClusterImageSet` のrelease imageをpullできない
+- disconnected環境でmirror registryまたはCA証明書が足りない
+- static networkのMACアドレス、interface名、gateway、DNSが実機と合わない
+- BMH連携時に `BareMetalHost` と `Agent` のMAC対応が取れていない
 
 ## Related
 
-- [[30-operations/cluster-health-check|Cluster Health Check]]
-- [[30-operations/operator-installation-runbook|Operator Installation Runbook]]
+- [[20-architecture/assisted-installer-hive-integration|Assisted Installer Hive Integration]]
 - [[20-architecture/nmstate-operator|NMState Operator]]
-- [[20-architecture/metallb-operator|MetalLB Operator]]
-- [[70-reference/repositories|Repositories]]
+- [[30-operations/cluster-health-check|Cluster Health Check]]
+- [[20-architecture/operators|Operators]]

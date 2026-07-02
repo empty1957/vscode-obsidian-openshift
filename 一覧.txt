@@ -1,0 +1,259 @@
+# OpenShift Operators 一覧
+
+## 1. Cluster Operator
+
+OpenShift クラスタ本体を構成・維持する Operator。
+
+| Operator                                     | 役割                                                                              |
+| -------------------------------------------- | ------------------------------------------------------------------------------- |
+| Cluster Baremetal Operator                   | Bare Metal 環境で metal3、Bare Metal Operator、Ironic などを使い、物理サーバーを OpenShift ノード化する |
+| Cloud Credential Operator                    | AWS、Azure、GCP などのクラウド認証情報を管理する                                                  |
+| Cluster Authentication Operator              | 認証設定、OAuth 関連のクラスタ認証機能を管理する                                                     |
+| Cluster Autoscaler Operator                  | Cluster Autoscaler と MachineAutoscaler を管理し、ノード数の自動調整を行う                        |
+| Cloud Controller Manager Operator            | 各クラウドプロバイダー向け Cloud Controller Manager を管理する                                    |
+| Cluster CAPI Operator                        | Cluster API 関連リソースを管理する                                                         |
+| Cluster Config Operator                      | `config.openshift.io` 系 CRD と初期カスタムリソースを管理する                                    |
+| Cluster CSI Snapshot Controller Operator     | CSI スナップショットコントローラーを管理する                                                        |
+| Cluster Image Registry Operator              | OpenShift 内蔵イメージレジストリを管理する                                                      |
+| Cluster Machine Approver Operator            | 新規 Worker ノードの CSR 承認を自動化する                                                     |
+| Cluster Monitoring Operator                  | Prometheus ベースのクラスタ監視スタックを管理する                                                  |
+| Cluster Network Operator                     | OpenShift のネットワークコンポーネントをインストール・更新する                                            |
+| Cluster Samples Operator                     | サンプル ImageStream や Template を管理する                                               |
+| Cluster Storage Operator                     | クラスタ全体のストレージ既定値、CSI ドライバ、StorageClass などを管理する                                   |
+| Cluster Version Operator                     | OpenShift リリースペイロードを基準に Cluster Operator 群のライフサイクルとクラスタ更新を管理する                  |
+| Console Operator                             | OpenShift Web Console を管理する                                                     |
+| Control Plane Machine Set Operator           | Control Plane ノードの Machine 管理を自動化する                                             |
+| DNS Operator                                 | CoreDNS を管理し、クラスタ内名前解決を提供する                                                     |
+| etcd cluster Operator                        | etcd のスケーリング、監視、メトリクス、障害復旧支援を管理する                                               |
+| Ingress Operator                             | OpenShift Router / IngressController を管理する                                      |
+| Insights Operator                            | クラスタ設定情報を Red Hat Insights に送信し、推奨事項や潜在問題検出に使う                                  |
+| Kubernetes API Server Operator               | Kubernetes API Server を管理する                                                     |
+| Kubernetes Controller Manager Operator       | Kubernetes Controller Manager を管理する                                             |
+| Kubernetes Scheduler Operator                | Kubernetes Scheduler を管理する                                                      |
+| Kubernetes Storage Version Migrator Operator | Kubernetes API の storage version migration を支援する                                |
+| Machine API Operator                         | Machine、MachineSet、MachineHealthCheck などを管理する                                   |
+| Machine Config Operator                      | RHCOS ノード設定、OS 更新、kubelet 設定、MachineConfigPool などを管理する                          |
+| Marketplace Operator                         | OperatorHub / カタログソース周辺を管理する                                                    |
+| Node Tuning Operator                         | TuneD や PerformanceProfile によりノードレベルの性能チューニングを行う                                |
+| OpenShift API Server Operator                | OpenShift API Server を管理する                                                      |
+| OpenShift Controller Manager Operator        | OpenShift 固有コントローラーを管理する                                                        |
+| Operator Lifecycle Manager Classic Operators | OLM Classic、Catalog Operator、PackageServer などを管理する                              |
+| Operator Lifecycle Manager v1 Operator       | OLM v1 の ClusterExtension など、次世代拡張管理を提供する                                       |
+| OpenShift Service CA Operator                | クラスタ内サービス証明書を発行・管理する                                                            |
+| vSphere Problem Detector Operator            | vSphere 環境固有の問題検出を行う                                                            |
+
+---
+
+## 2. Networking Operators
+
+ネットワーク機能を追加・拡張する Operator。
+
+| Operator                       | 役割                                                |
+| ------------------------------ | ------------------------------------------------- |
+| Kubernetes NMState Operator    | ノードの Linux ネットワーク設定を宣言的に管理する                      |
+| SR-IOV Network Operator        | SR-IOV NIC、VF、NetworkAttachmentDefinition を管理する   |
+| MetalLB Operator               | Bare Metal / オンプレミス環境で LoadBalancer Service を提供する |
+| External DNS Operator          | Route / Service などに応じて外部 DNS レコードを管理する            |
+| AWS Load Balancer Operator     | AWS Load Balancer Controller を OpenShift 上で管理する   |
+| Ingress Node Firewall Operator | ノードレベルの Ingress Firewall を管理する                    |
+| Network Observability Operator | ネットワークフロー可視化、トラフィック分析、Loki / Kafka 連携などを提供する      |
+| eBPF manager Operator          | eBPF ベース機能を管理する                                   |
+| DPU Operator                   | DPU / SmartNIC 系のネットワーク機能を管理する                    |
+
+---
+
+## 3. Security / Compliance Operators
+
+セキュリティ、証明書、コンプライアンス関連の Operator。
+
+| Operator                                        | 役割                                                |
+| ----------------------------------------------- | ------------------------------------------------- |
+| Compliance Operator                             | OpenSCAP ベースのコンプライアンススキャン、修復支援を行う                 |
+| File Integrity Operator                         | ノード上のファイル改ざん検知を行う                                 |
+| Security Profiles Operator                      | seccomp、SELinux profile などを管理する                   |
+| cert-manager Operator for Red Hat OpenShift     | TLS 証明書の自動発行・更新を管理する                              |
+| External Secrets Operator for Red Hat OpenShift | 外部 Secret Manager から Kubernetes Secret へ同期する      |
+| NBDE Tang Server Operator                       | Network-Bound Disk Encryption 用 Tang Server を管理する |
+| Zero Trust Workload Identity Manager            | ワークロード ID / ゼロトラスト系の管理を行う                         |
+
+---
+
+## 4. Storage / Data Protection Operators
+
+ストレージ、バックアップ、移行関連の Operator。
+
+| Operator                                  | 役割                                                            |
+| ----------------------------------------- | ------------------------------------------------------------- |
+| OpenShift Data Foundation Operator        | Ceph / NooBaa ベースの永続ストレージ、Object、Block、File を提供する             |
+| Local Storage Operator                    | ローカルディスクを PersistentVolume として利用可能にする                         |
+| LVMS Operator                             | LVM ベースのローカルストレージを管理する                                        |
+| Volume Group Snapshot / CSI 関連 Operator   | スナップショットや CSI 関連機能を提供する                                       |
+| OADP Operator                             | OpenShift API for Data Protection。Velero ベースのバックアップ・リストアを提供する |
+| Migration Toolkit for Containers Operator | クラスタ間のアプリケーション移行を支援する                                         |
+
+---
+
+## 5. Observability / Logging / Tracing Operators
+
+監視、ログ、トレース、可観測性関連の Operator。
+
+| Operator                                      | 役割                              |
+| --------------------------------------------- | ------------------------------- |
+| Cluster Observability Operator                | OpenShift の観測性機能を拡張する           |
+| Logging Operator                              | ログ収集、転送、保存基盤を管理する               |
+| Loki Operator                                 | LokiStack によるログ保存・検索基盤を提供する     |
+| Red Hat build of OpenTelemetry Operator       | OpenTelemetry Collector などを管理する |
+| Distributed Tracing Platform / Tempo Operator | 分散トレーシング基盤を管理する                 |
+| Power Monitoring Operator                     | 消費電力・エネルギー関連のメトリクスを収集する         |
+| Node Observability Operator                   | ノードレベルの観測性を強化する                 |
+
+---
+
+## 6. CI/CD / GitOps / Developer Platform Operators
+
+開発者体験、CI/CD、GitOps 関連の Operator。
+
+| Operator                                           | 役割                               |
+| -------------------------------------------------- | -------------------------------- |
+| Red Hat OpenShift Pipelines Operator               | Tekton ベースの CI/CD パイプラインを提供する    |
+| Red Hat OpenShift GitOps Operator                  | Argo CD ベースの GitOps デリバリーを提供する   |
+| Builds for Red Hat OpenShift / Shipwright Operator | Shipwright によるイメージビルドを提供する       |
+| Web Terminal Operator                              | OpenShift Console からターミナル機能を提供する |
+| Dev Spaces Operator                                | Eclipse Che ベースのクラウド開発環境を提供する    |
+| Serverless Operator                                | Knative Serving / Eventing を提供する |
+
+---
+
+## 7. Service Mesh / Integration Operators
+
+サービスメッシュ、メッセージング、API 管理、連携基盤の Operator。
+
+| Operator                                | 役割                                      |
+| --------------------------------------- | --------------------------------------- |
+| Red Hat OpenShift Service Mesh Operator | Istio ベースのサービスメッシュを提供する                 |
+| Kiali Operator                          | Service Mesh の可視化を提供する                  |
+| Jaeger / Distributed Tracing 系 Operator | トレース収集・可視化を提供する                         |
+| AMQ Streams Operator                    | Apache Kafka / Strimzi ベースの Kafka 管理を行う |
+| AMQ Broker Operator                     | ActiveMQ Artemis ベースのメッセージング基盤を提供する     |
+| 3scale API Management Operator          | API 管理基盤を提供する                           |
+| Service Binding Operator                | アプリケーションとサービスの接続情報をバインディングする            |
+
+---
+
+## 8. Virtualization / Windows / VM Operators
+
+仮想化、Windows ノード、VM 移行関連の Operator。
+
+| Operator                                      | 役割                                                |
+| --------------------------------------------- | ------------------------------------------------- |
+| OpenShift Virtualization Operator             | KubeVirt ベースで VM を OpenShift 上に実行する               |
+| HostPath Provisioner Operator                 | 開発・限定用途の HostPath ストレージを提供する                      |
+| Kubernetes NMState Operator                   | VM ネットワーク設定にも利用される                                |
+| Windows Machine Config Operator               | Windows ノードを OpenShift クラスタに統合する                  |
+| Migration Toolkit for Virtualization Operator | VMware などから OpenShift Virtualization へ VM 移行を支援する |
+
+---
+
+## 9. AI / ML / GPU / Accelerator Operators
+
+AI、機械学習、GPU、アクセラレータ関連の Operator。
+
+| Operator                          | 役割                                                 |
+| --------------------------------- | -------------------------------------------------- |
+| NVIDIA GPU Operator               | NVIDIA GPU ドライバ、Device Plugin、DCGM などを管理する         |
+| AMD GPU Operator                  | AMD GPU 関連機能を管理する                                  |
+| Node Feature Discovery Operator   | ノードの CPU / GPU / NIC などのハードウェア特徴をラベル化する            |
+| Kernel Module Management Operator | カーネルモジュールのビルド・配布・管理を行う                             |
+| Red Hat build of Kueue            | AI / ML / HPC ワークロードのキューイングを提供する                   |
+| Leader Worker Set Operator        | 分散 AI ワークロードの leader / worker 構成を管理する              |
+| JobSet Operator                   | 複数 Job からなる分散ジョブを管理する                              |
+| OpenShift AI Operator             | Red Hat OpenShift AI / Data Science Platform を管理する |
+
+---
+
+## 10. Multi-cluster / Management / Policy Operators
+
+マルチクラスタ管理、ポリシー、エッジ運用関連の Operator。
+
+| Operator                                            | 役割                                           |
+| --------------------------------------------------- | -------------------------------------------- |
+| Advanced Cluster Management for Kubernetes Operator | 複数 OpenShift / Kubernetes クラスタを統合管理する        |
+| multicluster engine Operator                        | Hosted Control Planes やクラスタライフサイクル管理の基盤を提供する |
+| OpenShift GitOps Operator                           | マルチクラスタ GitOps 配布にも利用される                     |
+| Topology Aware Lifecycle Manager                    | Telco / Edge 向けのクラスタ更新制御を提供する                |
+| Policy Generator / Governance 関連 Operator           | ポリシー適用・準拠管理を支援する                             |
+
+---
+
+## 11. Custom Operator
+
+自社アプリケーション、社内基盤、業務ミドルウェアを Kubernetes ネイティブに運用するために作成する Operator。
+
+| 実装方式                        | 向いているケース                                 |
+| --------------------------- | ---------------------------------------- |
+| Go Operator                 | 複雑な制御ロジック、高性能・高度な reconciliation が必要な場合  |
+| Ansible Operator            | 既存 Ansible Role / Playbook を活用したい場合      |
+| Helm Operator               | Helm Chart ベースのアプリケーションを Operator 化したい場合 |
+| Java / Quarkus Operator SDK | Java エコシステムで Operator を実装したい場合           |
+
+---
+
+## 12. OLM 管理リソース
+
+Operator Lifecycle Manager で Operator を管理する際に重要な Kubernetes リソース。
+
+| リソース                        | 意味                                     |
+| --------------------------- | -------------------------------------- |
+| CatalogSource               | Operator カタログの参照元                      |
+| PackageManifest             | 利用可能な Operator パッケージ情報                 |
+| Subscription                | どの Operator をどの Channel で購読・更新するかを定義する |
+| InstallPlan                 | 実際のインストール・更新計画                         |
+| ClusterServiceVersion / CSV | Operator のバージョン、権限、CRD、状態を表す           |
+| OperatorGroup               | Operator が監視する Namespace 範囲を定義する       |
+| CRD                         | Operator が提供するカスタム API                 |
+| Custom Resource / CR        | 利用者が作成する宣言的な管理対象リソース                   |
+
+---
+
+## 13. 確認コマンド
+
+### Cluster Operator の確認
+
+```bash
+oc get clusteroperators
+oc get co
+oc describe clusteroperator <name>
+```
+
+### OperatorHub / OLM 系 Operator の確認
+
+```bash
+oc get catalogsource -n openshift-marketplace
+oc get packagemanifest -n openshift-marketplace
+oc get subscriptions -A
+oc get installplan -A
+oc get csv -A
+oc get operatorgroup -A
+oc get crd | grep <keyword>
+```
+
+---
+
+## 14. 分類まとめ
+
+| 区分                      | 管理主体                     | 例                                                                               |
+| ----------------------- | ------------------------ | ------------------------------------------------------------------------------- |
+| Cluster Operator        | Cluster Version Operator | API Server、etcd、Ingress、DNS、Network、Monitoring、Machine Config、Console           |
+| Red Hat Add-on Operator | OLM                      | OpenShift Pipelines、GitOps、Service Mesh、ODF、Logging、OpenShift AI、Virtualization |
+| Certified Operator      | OLM                      | ISV 製 DB、監視、セキュリティ、バックアップ、ネットワーク製品                                              |
+| Community Operator      | OLM                      | コミュニティ提供の OSS Operator                                                          |
+| Custom Operator         | OLM または独自管理              | 社内アプリ、独自運用自動化、業務基盤                                                              |
+
+---
+
+## 15. 重要な切り分け
+
+* Cluster Operator は OpenShift 本体の構成要素。
+* OperatorHub の Operator は機能追加用の Add-on。
+* Cluster Operator は原則としてユーザーが任意に削除・更新する対象ではない。
+* Add-on Operator は Subscription / Channel / InstallPlan / CSV を通じて導入・更新・削除する。

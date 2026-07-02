@@ -8,6 +8,8 @@ OpenShiftナレッジベースで参照する主要Gitリポジトリです。
 - SR-IOV Network Operator: https://github.com/openshift/sriov-network-operator
 - Assisted Installer: https://github.com/openshift/assisted-installer
 - Assisted Service: https://github.com/openshift/assisted-service
+- Hive: https://github.com/openshift/hive
+- Open Cluster Management: https://github.com/open-cluster-management
 - Cluster Logging Operator: https://github.com/openshift/cluster-logging-operator
 
 ## Upstream Projects
@@ -23,6 +25,7 @@ OpenShiftナレッジベースで参照する主要Gitリポジトリです。
 - [[20-architecture/metallb-operator|MetalLB Operator]]
 - [[20-architecture/sriov-network-operator|SR-IOV Network Operator]]
 - [[20-architecture/nmstate-operator|NMState Operator]]
-- [[30-operations/assisted-installer|Assisted Installer]]
+- [[20-architecture/assisted-installer-hive-integration|Assisted Installer Hive Integration]]
+- [[30-operations/assisted-installer|Assisted Installer Operations]]
 - [[30-operations/openstack-logging|OpenStack Logging]]
 

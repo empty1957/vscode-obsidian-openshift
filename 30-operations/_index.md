@@ -8,10 +8,12 @@
 - [[30-operations/backup-and-restore|Backup and Restore]]
 - [[30-operations/upgrade-runbook|Upgrade Runbook]]
 - [[30-operations/operator-installation-runbook|Operator Installation Runbook]]
-- [[30-operations/assisted-installer|Assisted Installer]]
+- [[30-operations/assisted-installer|Assisted Installer Operations]]
 - [[30-operations/openstack-logging|OpenStack Logging]]
 
 ## Related
 
+- [[20-architecture/assisted-installer-hive-integration|Assisted Installer Hive Integration]]
+- [[20-architecture/operator-cli-installation|Operator CLI Installation]]
 - [[60-troubleshooting/_index|Troubleshooting]]
 - [[50-security/_index|Security]]
