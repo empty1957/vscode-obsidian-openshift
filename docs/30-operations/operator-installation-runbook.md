@@ -29,6 +29,8 @@ OpenShiftでOperatorを導入するときの共通手順です。OperatorHubのG
 
 Operator名、channel、CatalogSource、Namespaceを確認します。
 
+CLI導入で作成するOLMリソースの意味や、`Subscription`、`OperatorGroup`、`InstallPlan` の設計観点は [[20-architecture/operator-cli-installation|Operator CLI Installation]] にまとめています。
+
 ```bash
 oc get packagemanifest -n openshift-marketplace | grep -i <operator-name>
 oc get packagemanifest <package-name> -n openshift-marketplace -o yaml
@@ -109,6 +111,7 @@ oc api-resources | grep -i <operator-keyword>
 ## Related
 
 - [[20-architecture/operators|Operators]]
+- [[20-architecture/operator-cli-installation|Operator CLI Installation]]
 - [[20-architecture/metallb-operator|MetalLB Operator]]
 - [[20-architecture/sriov-network-operator|SR-IOV Network Operator]]
 - [[20-architecture/nmstate-operator|NMState Operator]]
