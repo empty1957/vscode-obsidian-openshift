@@ -91,6 +91,15 @@ oc get infraenv <name> -n <namespace> -o jsonpath='{.spec.nmStateConfigLabelSele
 - static networkのMACアドレス、interface名、gateway、DNSが実機と合わない
 - BMH連携時に `BareMetalHost` と `Agent` のMAC対応が取れていない
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- Assisted Service Hive integration: https://github.com/openshift/assisted-service/blob/master/docs/hive-integration/README.md
+- Assisted Installer repository: https://github.com/openshift/assisted-installer
+- Assisted Service repository: https://github.com/openshift/assisted-service
+- Red Hat Advanced Cluster Management documentation: https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes
+
 ## Related
 
 - [[20-architecture/assisted-installer-hive-integration|Assisted Installer Hive Integration]]

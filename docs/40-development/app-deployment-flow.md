@@ -19,6 +19,14 @@ oc logs deploy/<deployment-name>
 oc describe pod <pod-name>
 ```
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- Kubernetes Workloads: https://kubernetes.io/docs/concepts/workloads/
+- Kubernetes ConfigMaps: https://kubernetes.io/docs/concepts/configuration/configmap/
+- Kubernetes Secrets: https://kubernetes.io/docs/concepts/configuration/secret/
+
 ## Related
 
 - [[40-development/configmap-and-secret|ConfigMap and Secret]]

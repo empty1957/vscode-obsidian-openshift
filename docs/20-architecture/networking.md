@@ -17,6 +17,13 @@ OpenShiftにおけるネットワークの整理です。
 - NetworkPolicyで必要な通信が許可されているか
 - DNS解決ができるか
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- OpenShift Networking Operators: https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/networking_operators
+- Kubernetes Services, Load Balancing, and Networking: https://kubernetes.io/docs/concepts/services-networking/
+
 ## Related
 
 - [[50-security/network-policy|Network Policy]]

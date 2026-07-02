@@ -158,6 +158,15 @@ OpenShift 4.12以降のHubではconverged flowが基本になり、Preprovisioni
 - `NMStateConfig` のMACアドレスやinterface名がHost実体と一致しない
 - `ClusterImageSet` のrelease imageがHubまたはSpoke環境からpullできない
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- Assisted Service Hive integration: https://github.com/openshift/assisted-service/blob/master/docs/hive-integration/README.md
+- Assisted Installer repository: https://github.com/openshift/assisted-installer
+- Assisted Service repository: https://github.com/openshift/assisted-service
+- Red Hat Advanced Cluster Management documentation: https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes
+
 ## Related
 
 - [[30-operations/assisted-installer|Assisted Installer Operations]]

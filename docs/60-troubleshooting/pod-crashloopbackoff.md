@@ -19,6 +19,13 @@ oc get events --sort-by=.lastTimestamp
 - livenessProbeの設定が厳しすぎる
 - 権限不足やファイル書き込み不可
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- Kubernetes Debugging: https://kubernetes.io/docs/tasks/debug/
+- Kubernetes Troubleshooting applications: https://kubernetes.io/docs/tasks/debug/debug-application/
+
 ## Related
 
 - [[40-development/configmap-and-secret|ConfigMap and Secret]]

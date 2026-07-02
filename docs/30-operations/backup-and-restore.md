@@ -24,6 +24,13 @@
 4. データを復元します。
 5. アプリケーション疎通を確認します。
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- OpenShift Backup and restore: https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/backup_and_restore/backup-restore-overview
+- Kubernetes Storage: https://kubernetes.io/docs/concepts/storage/
+
 ## Related
 
 - [[20-architecture/storage|Storage]]

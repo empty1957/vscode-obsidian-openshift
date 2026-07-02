@@ -117,6 +117,14 @@ oc describe nnce <policy-name>.<node-name>
 
 - Kubernetes NMState: https://github.com/nmstate/kubernetes-nmstate
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- OpenShift Kubernetes NMState Operator documentation: https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator
+- Kubernetes NMState repository: https://github.com/nmstate/kubernetes-nmstate
+- NMState documentation: https://nmstate.io/
+
 ## Related
 
 - [[30-operations/operator-installation-runbook|Operator Installation Runbook]]

@@ -27,3 +27,8 @@ OpenShiftの知識を段階的に増やすための学習順です。
 - [[50-security/network-policy|Network Policy]]
 - Namespace設計、権限分離、監査
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- Kubernetes Concepts: https://kubernetes.io/docs/concepts/

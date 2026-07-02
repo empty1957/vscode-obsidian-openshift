@@ -8,3 +8,8 @@
 - [[70-reference/glossary|Glossary]]
 - [[70-reference/external-links|External Links]]
 - [[70-reference/repositories|Repositories]]
+
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/

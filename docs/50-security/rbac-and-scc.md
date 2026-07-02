@@ -21,6 +21,13 @@ oc auth can-i <verb> <resource> -n <namespace>
 oc adm policy who-can <verb> <resource> -n <namespace>
 ```
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- Kubernetes Security: https://kubernetes.io/docs/concepts/security/
+- OpenShift Security and compliance: https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/security_and_compliance
+
 ## Related
 
 - [[40-development/configmap-and-secret|ConfigMap and Secret]]

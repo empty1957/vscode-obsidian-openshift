@@ -14,6 +14,13 @@ Namespace内外のPod通信を制御するための設計メモです。
 - Namespace selectorが広すぎないか
 - egress制御で外部APIやDNSを遮断していないか
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- Kubernetes Security: https://kubernetes.io/docs/concepts/security/
+- OpenShift Security and compliance: https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/security_and_compliance
+
 ## Related
 
 - [[20-architecture/networking|Networking]]

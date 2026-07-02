@@ -11,6 +11,11 @@
 - [[30-operations/assisted-installer|Assisted Installer Operations]]
 - [[30-operations/openstack-logging|OpenStack Logging]]
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+
 ## Related
 
 - [[20-architecture/assisted-installer-hive-integration|Assisted Installer Hive Integration]]

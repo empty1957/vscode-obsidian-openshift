@@ -18,6 +18,11 @@ oc get events --sort-by=.lastTimestamp
 
 解決手順を書きます。
 
+## Sources
+
+- Official documentation URL:
+- Source repository URL:
+
 ## Related
 
 - [[60-troubleshooting/_index]]

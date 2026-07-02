@@ -10,3 +10,8 @@
 
 - [[90-templates/adr-template|ADR Template]]
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- Markdown Guide: https://www.markdownguide.org/

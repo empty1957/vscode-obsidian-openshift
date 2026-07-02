@@ -62,3 +62,10 @@ Codex は GitHub リポジトリ `empty1957/vscode-obsidian-openshift` と連携
 - 事実、手順、判断理由を分けて書きます。
 - `[[path/to/note|Label]]` 形式の Wiki リンクを維持します。
 - 文字化けを見つけた場合は、内容を推測で復元せず、分かる範囲で明確な日本語に直します。
+
+## Sources
+
+- Repository README: [[README]]
+- GitHub pull request documentation: https://docs.github.com/en/pull-requests
+- MkDocs documentation: https://www.mkdocs.org/
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform

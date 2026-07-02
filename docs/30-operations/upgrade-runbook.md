@@ -24,6 +24,13 @@ oc get nodes
 - 主要アプリケーションのヘルスチェックを実施します。
 - 変更点を [[80-decisions/_index|Decisions]] または運用ログへ記録します。
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- OpenShift Backup and restore: https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/backup_and_restore/backup-restore-overview
+- Kubernetes Debugging: https://kubernetes.io/docs/tasks/debug/
+
 ## Related
 
 - [[30-operations/cluster-health-check|Cluster Health Check]]

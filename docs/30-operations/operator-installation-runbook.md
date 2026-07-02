@@ -108,6 +108,11 @@ oc get events -n <operator-namespace> --sort-by=.lastTimestamp
 oc api-resources | grep -i <operator-keyword>
 ```
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+
 ## Related
 
 - [[20-architecture/operators|Operators]]

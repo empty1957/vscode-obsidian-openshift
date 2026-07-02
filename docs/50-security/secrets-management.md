@@ -15,6 +15,13 @@ OpenShiftでの機密情報管理に関するノートです。
 - 更新時にPod再起動が必要か
 - 失効、漏えい、ローテーション時の連絡経路はあるか
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- Kubernetes Security: https://kubernetes.io/docs/concepts/security/
+- OpenShift Security and compliance: https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/security_and_compliance
+
 ## Related
 
 - [[40-development/configmap-and-secret|ConfigMap and Secret]]
