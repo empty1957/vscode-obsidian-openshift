@@ -14,7 +14,7 @@
         <link rel="prev" href="../../10-overview/openshift-overview/">
       
       
-        <link rel="next" href="../cluster-components/">
+        <link rel="next" href="../assisted-installer-hive-integration/">
       
       
         
@@ -538,6 +538,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#operator-knowledge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operator Knowledge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -552,6 +563,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assisted-installer-hive-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assisted Installer Hive Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -656,6 +695,34 @@
     
   
     NMState Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator-cli-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operator CLI Installation
   
 
     
@@ -849,7 +916,7 @@
   <span class="md-ellipsis">
     
   
-    Assisted Installer
+    Assisted Installer Operations
   
 
     
@@ -2044,6 +2111,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#operator-knowledge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operator Knowledge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2072,21 +2150,30 @@
 
 
 <h1 id="architecture">Architecture</h1>
-<p>OpenShiftの構成要素、設計パターン、クラスタ構造を整理します。</p>
+<p>OpenShiftの構成要素、設計パターン、クラスタ機能を支えるOperatorを整理します。</p>
 <h2 id="notes">Notes</h2>
 <ul>
 <li><a href="../cluster-components/" title="Cluster Components">Cluster Components</a></li>
 <li><a href="../networking/" title="Networking">Networking</a></li>
 <li><a href="../storage/" title="Storage">Storage</a></li>
 <li><a href="../operators/" title="Operators">Operators</a></li>
+<li><a href="../operator-cli-installation/" title="Operator CLI Installation">Operator CLI Installation</a></li>
+<li><a href="../assisted-installer-hive-integration/" title="Assisted Installer Hive Integration">Assisted Installer Hive Integration</a></li>
 <li><a href="../metallb-operator/" title="MetalLB Operator">MetalLB Operator</a></li>
 <li><a href="../sriov-network-operator/" title="SR-IOV Network Operator">SR-IOV Network Operator</a></li>
 <li><a href="../nmstate-operator/" title="NMState Operator">NMState Operator</a></li>
+</ul>
+<h2 id="operator-knowledge">Operator Knowledge</h2>
+<ul>
+<li>Cluster OperatorはOpenShift本体を構成し、Cluster Version Operatorがリリースペイロードに基づいて管理します。</li>
+<li>OperatorHubのAdd-on OperatorはOLMの <code>Subscription</code>、<code>InstallPlan</code>、<code>ClusterServiceVersion</code>、<code>CustomResourceDefinition</code> を通じて導入、更新、削除します。</li>
+<li>RHACM/MCE環境のAssisted Installerは、Hive連携のKubernetes APIとして <code>ClusterDeployment</code>、<code>AgentClusterInstall</code>、<code>InfraEnv</code>、<code>Agent</code> などを扱います。</li>
 </ul>
 <h2 id="related">Related</h2>
 <ul>
 <li><a href="../../50-security/_index/" title="Security">Security</a></li>
 <li><a href="../../30-operations/_index/" title="Operations">Operations</a></li>
+<li><a href="../../70-reference/repositories/" title="Repositories">Repositories</a></li>
 </ul>
 
 

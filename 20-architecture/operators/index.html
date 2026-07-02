@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://empty1957.github.io/vscode-obsidian-openshift/20-architecture/operators/">
       
       
-        <link rel="prev" href="../nmstate-operator/">
+        <link rel="prev" href="../operator-cli-installation/">
       
       
         <link rel="next" href="../sriov-network-operator/">
@@ -495,6 +495,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../assisted-installer-hive-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assisted Installer Hive Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../cluster-components/" class="md-nav__link">
         
   
@@ -604,6 +632,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator-cli-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operator CLI Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -667,10 +723,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#concepts" class="md-nav__link">
+  <a href="#big-picture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Concepts
+        Big Picture
       
     </span>
   </a>
@@ -678,10 +734,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
+  <a href="#core-concepts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notes
+        Core Concepts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cluster-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cluster Operators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-on-operator-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add-on Operator Categories
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#olm-resource-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OLM Resource Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Points
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Checks
       
     </span>
   </a>
@@ -860,7 +971,7 @@
   <span class="md-ellipsis">
     
   
-    Assisted Installer
+    Assisted Installer Operations
   
 
     
@@ -2044,10 +2155,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#concepts" class="md-nav__link">
+  <a href="#big-picture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Concepts
+        Big Picture
       
     </span>
   </a>
@@ -2055,10 +2166,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
+  <a href="#core-concepts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Notes
+        Core Concepts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cluster-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cluster Operators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-on-operator-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add-on Operator Categories
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#olm-resource-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OLM Resource Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Points
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Checks
       
     </span>
   </a>
@@ -2094,27 +2260,213 @@
 
 
 <h1 id="operators">Operators</h1>
-<p>OperatorはKubernetes上でアプリケーションや基盤コンポーネントの運用知識を自動化する仕組みです。</p>
-<h2 id="concepts">Concepts</h2>
+<p>OperatorはKubernetes API上でアプリケーションや基盤コンポーネントの運用知識を自動化する仕組みです。OpenShiftでは、クラスタ本体を構成するCluster Operatorと、OperatorHub/OLMで導入するAdd-on Operatorを分けて理解すると整理しやすくなります。</p>
+<h2 id="big-picture">Big Picture</h2>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>管理主体</th>
+<th>代表例</th>
+<th>ユーザー操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cluster Operator</td>
+<td>Cluster Version Operator</td>
+<td>API Server、etcd、Ingress、DNS、Network、Monitoring、Machine Config、Console</td>
+<td>原則として個別に削除・更新しません。クラスタ更新に従います。</td>
+</tr>
+<tr>
+<td>Red Hat Add-on Operator</td>
+<td>OLM</td>
+<td>Pipelines、GitOps、Service Mesh、ODF、Logging、OpenShift AI、Virtualization</td>
+<td><code>Subscription</code>、<code>InstallPlan</code>、CSV、CRで導入・更新します。</td>
+</tr>
+<tr>
+<td>Certified Operator</td>
+<td>OLM</td>
+<td>ISV製DB、監視、セキュリティ、バックアップ、ネットワーク製品</td>
+<td>サポート範囲、channel、権限を確認して導入します。</td>
+</tr>
+<tr>
+<td>Community Operator</td>
+<td>OLM</td>
+<td>コミュニティ提供OSS Operator</td>
+<td>サポート性と更新方針を個別に確認します。</td>
+</tr>
+<tr>
+<td>Custom Operator</td>
+<td>OLMまたは独自管理</td>
+<td>社内アプリ、独自運用自動化、業務基盤</td>
+<td>Operator SDK、Helm、Ansible、Goなどで実装します。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="core-concepts">Core Concepts</h2>
 <ul>
-<li>Custom Resource: 利用者が宣言する目的の状態</li>
-<li>Controller: Custom Resourceを監視して実際の状態を調整</li>
-<li>Operator Lifecycle Manager: Operatorの導入、更新、管理</li>
+<li>Custom Resource: 利用者が宣言する目的状態です。</li>
+<li>Controller: Custom Resourceを監視し、実際の状態を目的状態へ近づけます。</li>
+<li>Reconcile Loop: 差分検出、作成、更新、削除、status反映を繰り返す制御ループです。</li>
+<li>Operator Lifecycle Manager: Operatorの導入、更新、依存関係、CSV、InstallPlanを管理します。</li>
+<li>Cluster Version Operator: OpenShiftリリースペイロードを基準にCluster Operator群を管理します。</li>
 </ul>
-<h2 id="notes">Notes</h2>
+<h2 id="cluster-operators">Cluster Operators</h2>
+<p>Cluster OperatorはOpenShiftクラスタ本体を構成・維持します。<code>oc get clusteroperators</code> または <code>oc get co</code> で状態を確認します。</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>主な役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cluster Version Operator</td>
+<td>OpenShiftリリースペイロードに基づき、Cluster Operator群とクラスタ更新を管理します。</td>
+</tr>
+<tr>
+<td>Machine Config Operator</td>
+<td>RHCOS、kubelet、MachineConfigPool、ノード再起動を伴う設定を管理します。</td>
+</tr>
+<tr>
+<td>Cluster Network Operator</td>
+<td>OVN-Kubernetesなどのクラスタネットワークを管理します。</td>
+</tr>
+<tr>
+<td>Ingress Operator</td>
+<td>RouterとIngressControllerを管理します。</td>
+</tr>
+<tr>
+<td>DNS Operator</td>
+<td>CoreDNSとクラスタ内名前解決を管理します。</td>
+</tr>
+<tr>
+<td>Cluster Monitoring Operator</td>
+<td>Prometheusベースの監視スタックを管理します。</td>
+</tr>
+<tr>
+<td>Cluster Storage Operator</td>
+<td>CSIドライバ、StorageClass、スナップショット関連の基盤を管理します。</td>
+</tr>
+<tr>
+<td>Machine API Operator</td>
+<td>Machine、MachineSet、MachineHealthCheckを管理します。</td>
+</tr>
+<tr>
+<td>Cloud Credential Operator</td>
+<td>クラウド認証情報を管理します。</td>
+</tr>
+<tr>
+<td>Authentication / OAuth関連Operator</td>
+<td>認証、OAuth、Consoleログイン体験を支えます。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="add-on-operator-categories">Add-on Operator Categories</h2>
+<p><code>一覧.txt</code> の分類を、設計時に使いやすいカテゴリとして整理します。</p>
+<table>
+<thead>
+<tr>
+<th>カテゴリ</th>
+<th>代表Operator</th>
+<th>設計観点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Networking</td>
+<td>NMState、SR-IOV、MetalLB、External DNS、Network Observability</td>
+<td>Nodeネットワーク、LoadBalancer、追加NIC、外部DNS、通信可視化</td>
+</tr>
+<tr>
+<td>Security / Compliance</td>
+<td>Compliance、File Integrity、Security Profiles、cert-manager、External Secrets</td>
+<td>監査、証明書、Secret連携、Nodeセキュリティ</td>
+</tr>
+<tr>
+<td>Storage / Data Protection</td>
+<td>OpenShift Data Foundation、Local Storage、LVMS、OADP、Migration Toolkit</td>
+<td>永続ストレージ、バックアップ、リストア、移行</td>
+</tr>
+<tr>
+<td>Observability / Logging / Tracing</td>
+<td>Logging、Loki、OpenTelemetry、Tempo、Power Monitoring</td>
+<td>ログ保存、メトリクス、トレース、運用可視化</td>
+</tr>
+<tr>
+<td>CI/CD / Developer Platform</td>
+<td>Pipelines、GitOps、Builds、Web Terminal、Dev Spaces、Serverless</td>
+<td>開発者体験、GitOps、ビルド、サーバーレス</td>
+</tr>
+<tr>
+<td>Service Mesh / Integration</td>
+<td>Service Mesh、Kiali、AMQ Streams、AMQ Broker、3scale、Service Binding</td>
+<td>東西トラフィック制御、API管理、メッセージング</td>
+</tr>
+<tr>
+<td>Virtualization / Windows / VM</td>
+<td>OpenShift Virtualization、HostPath Provisioner、Windows Machine Config、MTV</td>
+<td>VM実行、Windowsノード、VM移行</td>
+</tr>
+<tr>
+<td>AI / ML / Accelerator</td>
+<td>NVIDIA GPU、AMD GPU、Node Feature Discovery、KMM、Kueue、OpenShift AI</td>
+<td>GPU、アクセラレータ、AI基盤、分散ジョブ</td>
+</tr>
+<tr>
+<td>Multi-cluster / Management</td>
+<td>RHACM、multicluster engine、Topology Aware Lifecycle Manager、Policy系</td>
+<td>Hub/Spoke管理、クラスタライフサイクル、Policy適用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="olm-resource-flow">OLM Resource Flow</h2>
+<p>OperatorHubでInstallを押す操作は、OLMのリソース作成と状態遷移として見ることができます。</p>
+<ol>
+<li><code>CatalogSource</code> から利用可能なOperatorカタログを取得します。</li>
+<li><code>PackageManifest</code> でpackage名、channel、CSVを確認します。</li>
+<li>導入先namespaceに <code>OperatorGroup</code> を作成し、監視範囲を定義します。</li>
+<li><code>Subscription</code> でpackage、channel、CatalogSource、承認方式を指定します。</li>
+<li>OLMが <code>InstallPlan</code> を生成します。</li>
+<li><code>installPlanApproval: Manual</code> の場合は、管理者がInstallPlanを承認します。</li>
+<li>OLMがCSV、Deployment、RBAC、CRDなどを作成します。</li>
+<li>CSVが <code>Succeeded</code> になると、Operator固有のCustom Resourceを作成できる状態になります。</li>
+</ol>
+<p>詳細なCLI手順は <a href="../operator-cli-installation/" title="Operator CLI Installation">Operator CLI Installation</a> にまとめています。</p>
+<h2 id="design-points">Design Points</h2>
 <ul>
-<li>Operatorの更新チャネルを確認します。</li>
-<li>CRDのバージョンと互換性を確認します。</li>
-<li>自動更新の影響範囲を事前に判断します。</li>
+<li>Cluster OperatorとAdd-on Operatorを混同しないようにします。</li>
+<li>Add-on Operatorは導入前にpackage名、channel、install mode、namespace、必要権限、CRDを確認します。</li>
+<li>本番環境では <code>installPlanApproval: Manual</code> を使うと、更新タイミングを制御しやすくなります。</li>
+<li>disconnected環境ではCatalogSource、ImageContentSourcePolicy/ImageDigestMirrorSet、pull secret、証明書を合わせて設計します。</li>
+<li>Operatorが作るRBAC、Webhook、DaemonSet、SCC、CRDは障害時の確認対象です。</li>
+<li>Custom Resourceの作成はOperator導入完了後に行います。CSVが失敗している状態でCRだけ作ってもreconcileされません。</li>
 </ul>
+<h2 id="basic-checks">Basic Checks</h2>
+<p>Cluster Operatorの確認です。</p>
+<pre><code class="language-bash">oc get clusteroperators
+oc get co
+oc describe clusteroperator &lt;name&gt;
+</code></pre>
+<p>OLM管理Operatorの確認です。</p>
+<pre><code class="language-bash">oc get catalogsource -n openshift-marketplace
+oc get packagemanifest -n openshift-marketplace
+oc get subscriptions -A
+oc get installplan -A
+oc get csv -A
+oc get operatorgroup -A
+oc get crd | grep &lt;keyword&gt;
+</code></pre>
 <h2 id="related">Related</h2>
 <ul>
-<li><a href="../../30-operations/upgrade-runbook/" title="Upgrade Runbook">Upgrade Runbook</a></li>
-<li><a href="../../80-decisions/_index/" title="Decisions">Decisions</a></li>
+<li><a href="../operator-cli-installation/" title="Operator CLI Installation">Operator CLI Installation</a></li>
+<li><a href="../assisted-installer-hive-integration/" title="Assisted Installer Hive Integration">Assisted Installer Hive Integration</a></li>
+<li><a href="../../30-operations/operator-installation-runbook/" title="Operator Installation Runbook">Operator Installation Runbook</a></li>
 <li><a href="../metallb-operator/" title="MetalLB Operator">MetalLB Operator</a></li>
 <li><a href="../sriov-network-operator/" title="SR-IOV Network Operator">SR-IOV Network Operator</a></li>
 <li><a href="../nmstate-operator/" title="NMState Operator">NMState Operator</a></li>
-<li><a href="../../30-operations/assisted-installer/" title="Assisted Installer">Assisted Installer</a></li>
 <li><a href="../../30-operations/openstack-logging/" title="OpenStack Logging">OpenStack Logging</a></li>
 </ul>
 
