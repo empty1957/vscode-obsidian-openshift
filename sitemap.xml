@@ -2,174 +2,174 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/00-inbox/_index/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/10-overview/_index/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/10-overview/learning-roadmap/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/10-overview/openshift-overview/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/20-architecture/_index/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/20-architecture/cluster-components/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/20-architecture/metallb-operator/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/20-architecture/networking/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/20-architecture/nmstate-operator/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/20-architecture/operators/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/20-architecture/sriov-network-operator/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/20-architecture/storage/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/30-operations/_index/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/30-operations/assisted-installer/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/30-operations/backup-and-restore/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/30-operations/cluster-health-check/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/30-operations/openstack-logging/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/30-operations/operator-installation-runbook/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/30-operations/upgrade-runbook/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/40-development/_index/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/40-development/app-deployment-flow/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/40-development/ci-cd/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/40-development/configmap-and-secret/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/50-security/_index/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/50-security/network-policy/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/50-security/rbac-and-scc/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/50-security/secrets-management/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/60-troubleshooting/_index/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/60-troubleshooting/imagepullbackoff/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/60-troubleshooting/pod-crashloopbackoff/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/60-troubleshooting/route-not-reachable/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/70-reference/_index/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/70-reference/external-links/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/70-reference/glossary/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/70-reference/oc-cheatsheet/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/70-reference/repositories/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/80-decisions/_index/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/80-decisions/adr-0001-knowledge-base-structure/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/90-templates/_index/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/90-templates/adr-template/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/90-templates/note-template/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/90-templates/runbook-template/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/90-templates/troubleshooting-template/</loc>
-         <lastmod>2026-07-01</lastmod>
+         <lastmod>2026-07-02</lastmod>
     </url>
 </urlset>

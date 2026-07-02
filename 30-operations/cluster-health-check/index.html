@@ -900,10 +900,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+  <a href="#quick-check" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Commands
+        Quick Check
       
     </span>
   </a>
@@ -922,10 +922,54 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-something-looks-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When Something Looks Wrong
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence Collection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
         Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
       
     </span>
   </a>
@@ -2066,10 +2110,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+  <a href="#quick-check" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Commands
+        Quick Check
       
     </span>
   </a>
@@ -2088,10 +2132,54 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-something-looks-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When Something Looks Wrong
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence Collection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
         Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
       
     </span>
   </a>
@@ -2116,31 +2204,97 @@
 
 
 <h1 id="cluster-health-check">Cluster Health Check</h1>
-<p>クラスタ状態を確認するための基本ランブックです。</p>
+<p>OpenShift クラスターの状態を短時間で確認し、異常がある場合に次の調査へ進むための初動ランブックです。定例点検、変更作業前後、障害一次切り分けで同じ順序を使います。</p>
 <h2 id="preconditions">Preconditions</h2>
 <ul>
-<li><code>oc</code> CLIで対象クラスタへログイン済み</li>
-<li>必要な閲覧権限があること</li>
+<li><code>oc</code> CLI で対象クラスターへログイン済みであること</li>
+<li>ClusterOperator、Node、Pod、Event を参照できる権限があること</li>
+<li>サポートケースへ連携する可能性がある場合は、<code>cluster-admin</code> 権限での証跡取得可否を確認しておくこと</li>
 </ul>
-<h2 id="commands">Commands</h2>
+<h2 id="quick-check">Quick Check</h2>
 <pre><code class="language-bash">oc whoami
 oc get clusterversion
-oc get nodes
 oc get co
-oc get pods -A | grep -v Running
+oc get nodes
+oc get pods -A
 oc get events -A --sort-by=.lastTimestamp
 </code></pre>
 <h2 id="checkpoints">Checkpoints</h2>
 <ul>
-<li>ClusterOperatorにDegradedやProgressingが残っていないか</li>
-<li>NotReadyのNodeがないか</li>
-<li>CrashLoopBackOffやImagePullBackOffのPodがないか</li>
-<li>直近イベントに繰り返し失敗がないか</li>
+<li><code>oc get clusterversion</code> で <code>Available=True</code>、かつ意図しない更新中や失敗履歴がないか</li>
+<li><code>oc get co</code> で <code>Degraded=True</code> の ClusterOperator がないか</li>
+<li><code>oc get co</code> で <code>Progressing=True</code> が長時間残っている ClusterOperator がないか</li>
+<li><code>oc get nodes</code> で <code>NotReady</code>、<code>SchedulingDisabled</code>、想定外の <code>Ready,SchedulingDisabled</code> がないか</li>
+<li><code>oc get pods -A</code> で <code>CrashLoopBackOff</code>、<code>ImagePullBackOff</code>、<code>Pending</code>、想定外の <code>Completed</code> が増えていないか</li>
+<li><code>oc get events -A --sort-by=.lastTimestamp</code> で同じ Warning が繰り返されていないか</li>
+</ul>
+<h2 id="when-something-looks-wrong">When Something Looks Wrong</h2>
+<p>異常を見つけたら、最初に「どの層で止まっているか」を分けます。</p>
+<table>
+<thead>
+<tr>
+<th>観点</th>
+<th>追加コマンド</th>
+<th>見るポイント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ClusterOperator</td>
+<td><code>oc describe co &lt;name&gt;</code></td>
+<td><code>Degraded</code> / <code>Progressing</code> の理由、関連 Namespace、直近メッセージ</td>
+</tr>
+<tr>
+<td>Node</td>
+<td><code>oc describe node &lt;node&gt;</code></td>
+<td><code>Conditions</code>、DiskPressure、MemoryPressure、NetworkUnavailable、kubelet 関連 Event</td>
+</tr>
+<tr>
+<td>Pod</td>
+<td><code>oc describe pod -n &lt;namespace&gt; &lt;pod&gt;</code></td>
+<td>Scheduling、Image pull、Probe、Volume mount のどこで失敗しているか</td>
+</tr>
+<tr>
+<td>Namespace 単位</td>
+<td><code>oc get all,events -n &lt;namespace&gt;</code></td>
+<td>Deployment、ReplicaSet、Service、Route、Event の整合性</td>
+</tr>
+<tr>
+<td>Update 中</td>
+<td><code>oc adm upgrade</code></td>
+<td>更新対象バージョン、更新可否、更新が止まっている理由</td>
+</tr>
+</tbody>
+</table>
+<h2 id="evidence-collection">Evidence Collection</h2>
+<p>一次切り分けで原因が見えない、または Red Hat Support へ連携する場合は、調査ログを早めに固定します。</p>
+<pre><code class="language-bash">oc get clusterversion -o jsonpath='{.items[].spec.clusterID}{&quot;\n&quot;}'
+oc adm must-gather
+oc adm inspect ns/&lt;namespace&gt;
+</code></pre>
+<ul>
+<li>Cluster ID はサポートケースでクラスターを一意に識別するために控えます。</li>
+<li><code>oc adm must-gather</code> はクラスター全体の診断情報を収集します。実行後に生成されたディレクトリを圧縮して保管します。</li>
+<li>影響範囲が特定 Namespace に限られる場合は、<code>oc adm inspect ns/&lt;namespace&gt;</code> で対象を絞った証跡も残します。</li>
+<li>Secret、証明書、顧客データを含む可能性があるため、共有先と保管場所を事前に決めます。</li>
+</ul>
+<h2 id="operational-notes">Operational Notes</h2>
+<ul>
+<li>変更作業前後のヘルスチェックでは、同じコマンドを同じ順序で実行し、差分として比較できるようにします。</li>
+<li>Warning Event は古いものも残るため、時刻、対象 Object、繰り返し回数を合わせて判断します。</li>
+<li><code>Progressing=True</code> は更新やロールアウト中にも発生するため、継続時間と変更作業の予定を照合します。</li>
+<li>障害対応では、原因調査の前に影響範囲、開始時刻、直近変更、復旧優先度をメモします。</li>
 </ul>
 <h2 id="related">Related</h2>
 <ul>
 <li><a href="../../60-troubleshooting/pod-crashloopbackoff/" title="Pod CrashLoopBackOff">Pod CrashLoopBackOff</a></li>
 <li><a href="../../60-troubleshooting/imagepullbackoff/" title="ImagePullBackOff">ImagePullBackOff</a></li>
+<li><a href="../upgrade-runbook/" title="Upgrade Runbook">Upgrade Runbook</a></li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/support/gathering-cluster-data">OpenShift Container Platform 4.19: Gathering data about your cluster</a></li>
+<li><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/updating_clusters/troubleshooting-a-cluster-update">OpenShift Container Platform 4.19: Troubleshooting a cluster update</a></li>
 </ul>
 
 
