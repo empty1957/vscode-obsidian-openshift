@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://empty1957.github.io/vscode-obsidian-openshift/30-operations/assisted-installer/">
+        <link rel="canonical" href="https://empty1957.github.io/vscode-obsidian-openshift/30-operations/project-resource-quota/">
       
       
-        <link rel="prev" href="../_index/">
+        <link rel="prev" href="../operator-installation-runbook/">
       
       
-        <link rel="next" href="../backup-and-restore/">
+        <link rel="next" href="../upgrade-runbook/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Assisted Installer Operations - OpenShift Knowledge Base</title>
+        <title>Project Resource Quota - OpenShift Knowledge Base</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#assisted-installer-operations" class="md-skip">
+        <a href="#project-resource-quota" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Assisted Installer Operations
+              Project Resource Quota
             
           </span>
         </div>
@@ -828,37 +828,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Assisted Installer Operations
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../assisted-installer/" class="md-nav__link">
         
   
   
@@ -874,125 +847,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Scope
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#primary-checks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Primary Checks
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cluster-install-conditions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cluster Install Conditions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#agent-checks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Agent Checks
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#infraenv-and-iso" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        InfraEnv And ISO
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#static-network" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Static Network
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-failure-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Failure Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sources" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sources
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Related
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1226,10 +1080,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../project-resource-quota/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Resource Quota
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1245,6 +1126,103 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preconditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preconditions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2308,10 +2286,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#purpose" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        Purpose
       
     </span>
   </a>
@@ -2319,10 +2297,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#primary-checks" class="md-nav__link">
+  <a href="#preconditions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Primary Checks
+        Preconditions
       
     </span>
   </a>
@@ -2330,10 +2308,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cluster-install-conditions" class="md-nav__link">
+  <a href="#steps" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cluster Install Conditions
+        Steps
       
     </span>
   </a>
@@ -2341,10 +2319,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#agent-checks" class="md-nav__link">
+  <a href="#rollback" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Agent Checks
+        Rollback
       
     </span>
   </a>
@@ -2352,32 +2330,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#infraenv-and-iso" class="md-nav__link">
+  <a href="#verification" class="md-nav__link">
     <span class="md-ellipsis">
       
-        InfraEnv And ISO
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#static-network" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Static Network
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-failure-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Failure Patterns
+        Verification
       
     </span>
   </a>
@@ -2423,84 +2379,94 @@
 
 
 
-<h1 id="assisted-installer-operations">Assisted Installer Operations</h1>
-<p>RHACMまたはmulticluster engineのHubクラスタでAssisted Installerを運用する場合の確認ポイントです。設計モデルは <a href="../../20-architecture/assisted-installer-hive-integration/" title="Assisted Installer Hive Integration">Assisted Installer Hive Integration</a> を参照します。</p>
-<h2 id="scope">Scope</h2>
-<p>このノートでは、Assisted InstallerをRHACM/MCE + Hive連携として扱います。Hub上の <code>ClusterDeployment</code>、<code>AgentClusterInstall</code>、<code>InfraEnv</code>、<code>Agent</code>、<code>NMStateConfig</code> を確認しながら、Spokeクラスタの作成状態を追います。</p>
-<h2 id="primary-checks">Primary Checks</h2>
-<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>clusterdeployment<span class="w"> </span>-A
-oc<span class="w"> </span>get<span class="w"> </span>agentclusterinstall<span class="w"> </span>-A
-oc<span class="w"> </span>get<span class="w"> </span>infraenv<span class="w"> </span>-A
-oc<span class="w"> </span>get<span class="w"> </span>agent<span class="w"> </span>-A
-oc<span class="w"> </span>get<span class="w"> </span>managedcluster
-</code></pre></div>
-<p>対象namespaceを絞って確認します。</p>
-<div class="highlight"><pre><span></span><code><span class="nv">NS</span><span class="o">=</span>&lt;cluster-namespace&gt;
-oc<span class="w"> </span>get<span class="w"> </span>clusterdeployment<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NS</span>
-oc<span class="w"> </span>get<span class="w"> </span>agentclusterinstall<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NS</span>
-oc<span class="w"> </span>get<span class="w"> </span>infraenv<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NS</span>
-oc<span class="w"> </span>get<span class="w"> </span>agent<span class="w"> </span>-n<span class="w"> </span><span class="nv">$NS</span><span class="w"> </span>-o<span class="w"> </span>wide
-</code></pre></div>
-<h2 id="cluster-install-conditions">Cluster Install Conditions</h2>
-<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>agentclusterinstall<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{range .status.conditions[*]}{.type}{&quot;\t&quot;}{.status}{&quot;\t&quot;}{.message}{&quot;\n&quot;}{end}&#39;</span>
-</code></pre></div>
-<p>見る条件です。</p>
+<h1 id="project-resource-quota">Project Resource Quota</h1>
+<p>ProjectまたはNamespaceにResourceQuotaとLimitRangeを設定し、リソース消費を制御するRunbookです。</p>
+<h2 id="purpose">Purpose</h2>
+<p>特定ProjectのCPU、メモリ、Pod数、PVC数などを制限し、単一チームや単一アプリケーションによるクラスタ全体への影響を抑えます。</p>
+<h2 id="preconditions">Preconditions</h2>
 <ul>
-<li><code>SpecSynced</code>: <code>AgentClusterInstall</code> の内容がAssisted Serviceへ同期されているか</li>
-<li><code>Validated</code>: クラスタvalidationが通っているか</li>
-<li><code>RequirementsMet</code>: 必要Host数、Agent承認、role、validationがそろっているか</li>
-<li><code>Completed</code>: インストール完了か</li>
-<li><code>Failed</code>: 失敗していないか</li>
+<li>対象Project名と利用チームを確認済みであること。</li>
+<li>既存Podのrequests/limits設定状況を確認していること。</li>
+<li>制限値について利用者と合意していること。</li>
 </ul>
-<h2 id="agent-checks">Agent Checks</h2>
-<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>agent<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
-oc<span class="w"> </span>describe<span class="w"> </span>agent<span class="w"> </span>&lt;agent-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
-oc<span class="w"> </span>get<span class="w"> </span>agent<span class="w"> </span>&lt;agent-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.status.inventory.hostname}{&quot;\n&quot;}{.status.inventory.interfaces}{&quot;\n&quot;}&#39;</span>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>対象Projectの現状を確認します。</li>
+</ol>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>project<span class="w"> </span>&lt;project-name&gt;
+oc<span class="w"> </span>get<span class="w"> </span>pods
+oc<span class="w"> </span>describe<span class="w"> </span>quota
+oc<span class="w"> </span>describe<span class="w"> </span>limitrange
 </code></pre></div>
-<p>Hostをインストール対象にするには、通常 <code>approved</code> が必要です。</p>
-<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>patch<span class="w"> </span>agent<span class="w"> </span>&lt;agent-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>--type<span class="w"> </span>merge<span class="w"> </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;:{&quot;approved&quot;:true}}&#39;</span>
+<ol>
+<li>現在のリソース要求量を確認します。</li>
+</ol>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>adm<span class="w"> </span>top<span class="w"> </span>pod<span class="w"> </span>-n<span class="w"> </span>&lt;project-name&gt;
+oc<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-n<span class="w"> </span>&lt;project-name&gt;<span class="w"> </span>-o<span class="w"> </span>custom-columns<span class="o">=</span>NAME:.metadata.name,CPU_REQ:.spec.containers<span class="o">[</span>*<span class="o">]</span>.resources.requests.cpu,MEM_REQ:.spec.containers<span class="o">[</span>*<span class="o">]</span>.resources.requests.memory
 </code></pre></div>
-<p>roleやinstallation diskも、環境に応じて明示します。</p>
-<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>patch<span class="w"> </span>agent<span class="w"> </span>&lt;agent-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>--type<span class="w"> </span>merge<span class="w"> </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;:{&quot;role&quot;:&quot;master&quot;}}&#39;</span>
-oc<span class="w"> </span>patch<span class="w"> </span>agent<span class="w"> </span>&lt;agent-name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>--type<span class="w"> </span>merge<span class="w"> </span>-p<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;:{&quot;installation_disk_id&quot;:&quot;/dev/disk/by-id/&lt;disk-id&gt;&quot;}}&#39;</span>
+<ol>
+<li>ResourceQuotaを作成します。</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ResourceQuota</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">project-default-quota</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;project-name&gt;</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">hard</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">requests.cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;4&quot;</span>
+<span class="w">    </span><span class="nt">requests.memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8Gi</span>
+<span class="w">    </span><span class="nt">limits.cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8&quot;</span>
+<span class="w">    </span><span class="nt">limits.memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16Gi</span>
+<span class="w">    </span><span class="nt">pods</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;30&quot;</span>
+<span class="w">    </span><span class="nt">persistentvolumeclaims</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10&quot;</span>
 </code></pre></div>
-<h2 id="infraenv-and-iso">InfraEnv And ISO</h2>
-<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>infraenv<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span>yaml
-oc<span class="w"> </span>get<span class="w"> </span>infraenv<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.status.isoDownloadURL}{&quot;\n&quot;}&#39;</span>
+<ol>
+<li>LimitRangeを作成します。</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LimitRange</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">project-default-limits</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;project-name&gt;</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
+<span class="w">      </span><span class="nt">defaultRequest</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100m</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">128Mi</span>
+<span class="w">      </span><span class="nt">default</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500m</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">512Mi</span>
 </code></pre></div>
-<p>ISOが生成されない場合は、pull secret、proxy、SSH key、mirror registry、CA証明書、NMStateConfig selectorを確認します。</p>
-<h2 id="static-network">Static Network</h2>
-<p>静的IPや複数NICを使う場合は、<code>NMStateConfig</code> と <code>InfraEnv.spec.nmStateConfigLabelSelector</code> の対応を確認します。</p>
-<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>get<span class="w"> </span>nmstateconfig<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
-oc<span class="w"> </span>describe<span class="w"> </span>nmstateconfig<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;
-oc<span class="w"> </span>get<span class="w"> </span>infraenv<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.spec.nmStateConfigLabelSelector}{&quot;\n&quot;}&#39;</span>
+<ol>
+<li>適用します。</li>
+</ol>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>quota.yaml
+oc<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>limitrange.yaml
 </code></pre></div>
-<h2 id="common-failure-patterns">Common Failure Patterns</h2>
-<ul>
-<li>Hostが <code>Agent</code> として登録されない</li>
-<li><code>Agent</code> はいるが <code>Connected</code> や <code>Validated</code> が通らない</li>
-<li><code>Agent.spec.approved</code> がfalseのまま</li>
-<li><code>AgentClusterInstall</code> の必要Host数に達していない</li>
-<li><code>ClusterImageSet</code> のrelease imageをpullできない</li>
-<li>disconnected環境でmirror registryまたはCA証明書が足りない</li>
-<li>static networkのMACアドレス、interface名、gateway、DNSが実機と合わない</li>
-<li>BMH連携時に <code>BareMetalHost</code> と <code>Agent</code> のMAC対応が取れていない</li>
-</ul>
+<h2 id="rollback">Rollback</h2>
+<p>問題が出た場合は、作成したResourceQuotaまたはLimitRangeを削除します。</p>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>delete<span class="w"> </span>resourcequota<span class="w"> </span>project-default-quota<span class="w"> </span>-n<span class="w"> </span>&lt;project-name&gt;
+oc<span class="w"> </span>delete<span class="w"> </span>limitrange<span class="w"> </span>project-default-limits<span class="w"> </span>-n<span class="w"> </span>&lt;project-name&gt;
+</code></pre></div>
+<h2 id="verification">Verification</h2>
+<div class="highlight"><pre><span></span><code>oc<span class="w"> </span>describe<span class="w"> </span>quota<span class="w"> </span>-n<span class="w"> </span>&lt;project-name&gt;
+oc<span class="w"> </span>describe<span class="w"> </span>limitrange<span class="w"> </span>-n<span class="w"> </span>&lt;project-name&gt;
+oc<span class="w"> </span>get<span class="w"> </span>events<span class="w"> </span>-n<span class="w"> </span>&lt;project-name&gt;<span class="w"> </span>--sort-by<span class="o">=</span>.lastTimestamp
+</code></pre></div>
+<p>Pod作成が意図通り制限され、既存ワークロードに不要な再起動が発生していないことを確認します。</p>
 <h2 id="sources">Sources</h2>
 <ul>
 <li>Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform</li>
-<li>Kubernetes Documentation: https://kubernetes.io/docs/</li>
-<li>Assisted Service Hive integration: https://github.com/openshift/assisted-service/blob/master/docs/hive-integration/README.md</li>
-<li>Assisted Installer repository: https://github.com/openshift/assisted-installer</li>
-<li>Assisted Service repository: https://github.com/openshift/assisted-service</li>
-<li>Red Hat Advanced Cluster Management documentation: https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes</li>
+<li>Kubernetes Resource Quotas: https://kubernetes.io/docs/concepts/policy/resource-quotas/</li>
+<li>Kubernetes Limit Ranges: https://kubernetes.io/docs/concepts/policy/limit-range/</li>
 </ul>
 <h2 id="related">Related</h2>
 <ul>
-<li><a href="../../20-architecture/assisted-installer-hive-integration/" title="Assisted Installer Hive Integration">Assisted Installer Hive Integration</a></li>
-<li><a href="../../20-architecture/nmstate-operator/" title="NMState Operator">NMState Operator</a></li>
+<li><a href="../../40-development/app-deployment-flow/" title="App Deployment Flow">App Deployment Flow</a></li>
+<li><a href="../../40-development/configmap-and-secret/" title="ConfigMap and Secret">ConfigMap and Secret</a></li>
 <li><a href="../cluster-health-check/" title="Cluster Health Check">Cluster Health Check</a></li>
-<li><a href="../../20-architecture/operators/" title="Operators">Operators</a></li>
 </ul>
 
 
@@ -2524,7 +2490,7 @@ oc<span class="w"> </span>get<span class="w"> </span>infraenv<span class="w"> </
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月2日 15:38:13 JST">2026年7月2日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月2日 21:58:12 JST">2026年7月2日</span>
   </span>
 
     
@@ -2534,7 +2500,7 @@ oc<span class="w"> </span>get<span class="w"> </span>infraenv<span class="w"> </
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月1日 02:22:08 JST">2026年7月1日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月2日 21:58:12 JST">2026年7月2日</span>
   </span>
 
     

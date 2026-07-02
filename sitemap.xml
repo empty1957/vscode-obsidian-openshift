@@ -69,7 +69,23 @@
          <lastmod>2026-07-02</lastmod>
     </url>
     <url>
+         <loc>https://empty1957.github.io/vscode-obsidian-openshift/30-operations/certificate-expiry-check/</loc>
+         <lastmod>2026-07-02</lastmod>
+    </url>
+    <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/30-operations/cluster-health-check/</loc>
+         <lastmod>2026-07-02</lastmod>
+    </url>
+    <url>
+         <loc>https://empty1957.github.io/vscode-obsidian-openshift/30-operations/etcd-snapshot-check/</loc>
+         <lastmod>2026-07-02</lastmod>
+    </url>
+    <url>
+         <loc>https://empty1957.github.io/vscode-obsidian-openshift/30-operations/image-registry-health/</loc>
+         <lastmod>2026-07-02</lastmod>
+    </url>
+    <url>
+         <loc>https://empty1957.github.io/vscode-obsidian-openshift/30-operations/node-maintenance-drain/</loc>
          <lastmod>2026-07-02</lastmod>
     </url>
     <url>
@@ -78,6 +94,10 @@
     </url>
     <url>
          <loc>https://empty1957.github.io/vscode-obsidian-openshift/30-operations/operator-installation-runbook/</loc>
+         <lastmod>2026-07-02</lastmod>
+    </url>
+    <url>
+         <loc>https://empty1957.github.io/vscode-obsidian-openshift/30-operations/project-resource-quota/</loc>
          <lastmod>2026-07-02</lastmod>
     </url>
     <url>
