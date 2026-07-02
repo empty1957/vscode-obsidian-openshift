@@ -1,0 +1,16 @@
+site_name: OpenShift Knowledge Base
+site_url: https://empty1957.github.io/vscode-obsidian-openshift/
+
+theme:
+  name: material
+
+docs_dir: docs
+
+plugins:
+  - search
+  - ezlinks:
+      wikilinks: true
+  - git-revision-date-localized:
+      enable_creation_date: true
+      locale: ja
+      timezone: Asia/Tokyo
