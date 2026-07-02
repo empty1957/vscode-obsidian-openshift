@@ -48,6 +48,8 @@
       
     
     
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -2285,213 +2287,213 @@
 <p>OpenShift、Kubernetes、CKA、CKAD、CKSレベルの用語集です。短く引けることを優先し、詳細は関連ノートへリンクします。</p>
 <h2 id="core-kubernetes">Core Kubernetes</h2>
 <ul>
-<li>API Server: Kubernetes APIの入口。すべての操作は最終的にAPI Serverへ送られます。</li>
-<li>Cluster: Control PlaneとWorker Nodeで構成されるKubernetes実行基盤です。</li>
-<li>Control Plane: API Server、etcd、Scheduler、Controller Managerなど、クラスタ全体を制御するコンポーネント群です。</li>
-<li>Node: Podを実行するサーバまたは仮想マシンです。</li>
-<li>Worker Node: アプリケーションPodを実行するNodeです。</li>
-<li>kubelet: Node上でPodの起動、停止、状態報告を行うエージェントです。</li>
-<li>kube-proxy: Serviceの仮想IPやNodePort通信を実現するコンポーネントです。</li>
-<li>etcd: クラスタ状態を保存する分散Key-Value Storeです。</li>
-<li>Scheduler: Pending状態のPodをどのNodeへ配置するか決めるコンポーネントです。</li>
-<li>Controller Manager: 宣言された状態と実際の状態を一致させる制御ループ群です。</li>
-<li>Reconciliation: 望ましい状態へ実際の状態を収束させる考え方です。</li>
-<li>Object: Pod、Service、Deploymentなど、Kubernetes APIで管理されるリソースです。</li>
-<li>Resource: APIで作成、取得、更新、削除できる管理対象です。</li>
-<li>Manifest: KubernetesリソースをYAMLやJSONで定義したファイルです。</li>
-<li>Namespace: リソースを論理的に分離する単位です。</li>
-<li>Label: リソースへ付与するKey-Valueメタデータです。</li>
-<li>Selector: Labelに基づいて対象リソースを選ぶ条件です。</li>
-<li>Annotation: ツールやコントローラ向けの追加メタデータです。</li>
-<li>OwnerReference: あるリソースが別リソースに所有されている関係を示します。</li>
-<li>Finalizer: 削除前に外部リソース解放などの処理を完了させる仕組みです。</li>
-<li>Garbage Collection: 所有者が消えたリソースを自動削除する仕組みです。</li>
+<li><strong>API Server</strong>: Kubernetes APIの入口。すべての操作は最終的にAPI Serverへ送られます。</li>
+<li><strong>Cluster</strong>: Control PlaneとWorker Nodeで構成されるKubernetes実行基盤です。</li>
+<li><strong>Control Plane</strong>: API Server、etcd、Scheduler、Controller Managerなど、クラスタ全体を制御するコンポーネント群です。</li>
+<li><strong>Node</strong>: Podを実行するサーバまたは仮想マシンです。</li>
+<li><strong>Worker Node</strong>: アプリケーションPodを実行するNodeです。</li>
+<li><strong>kubelet</strong>: Node上でPodの起動、停止、状態報告を行うエージェントです。</li>
+<li><strong>kube-proxy</strong>: Serviceの仮想IPやNodePort通信を実現するコンポーネントです。</li>
+<li><strong>etcd</strong>: クラスタ状態を保存する分散Key-Value Storeです。</li>
+<li><strong>Scheduler</strong>: Pending状態のPodをどのNodeへ配置するか決めるコンポーネントです。</li>
+<li><strong>Controller Manager</strong>: 宣言された状態と実際の状態を一致させる制御ループ群です。</li>
+<li><strong>Reconciliation</strong>: 望ましい状態へ実際の状態を収束させる考え方です。</li>
+<li><strong>Object</strong>: Pod、Service、Deploymentなど、Kubernetes APIで管理されるリソースです。</li>
+<li><strong>Resource</strong>: APIで作成、取得、更新、削除できる管理対象です。</li>
+<li><strong>Manifest</strong>: KubernetesリソースをYAMLやJSONで定義したファイルです。</li>
+<li><strong>Namespace</strong>: リソースを論理的に分離する単位です。</li>
+<li><strong>Label</strong>: リソースへ付与するKey-Valueメタデータです。</li>
+<li><strong>Selector</strong>: Labelに基づいて対象リソースを選ぶ条件です。</li>
+<li><strong>Annotation</strong>: ツールやコントローラ向けの追加メタデータです。</li>
+<li><strong>OwnerReference</strong>: あるリソースが別リソースに所有されている関係を示します。</li>
+<li><strong>Finalizer</strong>: 削除前に外部リソース解放などの処理を完了させる仕組みです。</li>
+<li><strong>Garbage Collection</strong>: 所有者が消えたリソースを自動削除する仕組みです。</li>
 </ul>
 <h2 id="workloads">Workloads</h2>
 <ul>
-<li>Pod: 1つ以上のコンテナをまとめたKubernetesの最小実行単位です。</li>
-<li>Container: イメージから起動されるプロセス隔離単位です。</li>
-<li>Init Container: アプリケーションコンテナ起動前に順番に実行されるコンテナです。</li>
-<li>Sidecar: メインアプリケーションを補助する同居コンテナです。</li>
-<li>Static Pod: kubeletが直接管理し、API Server経由で作成されないPodです。</li>
-<li>ReplicaSet: 指定数のPodレプリカを維持するリソースです。</li>
-<li>Deployment: ReplicaSetを管理し、ローリング更新やロールバックを提供します。</li>
-<li>StatefulSet: 安定したPod名、順序、永続ストレージを持つワークロードです。</li>
-<li>DaemonSet: 各NodeにPodを1つずつ配置する用途のワークロードです。</li>
-<li>Job: 完了するまで実行される一回限りの処理です。</li>
-<li>CronJob: スケジュールに従ってJobを作成するリソースです。</li>
-<li>Rolling Update: Podを段階的に入れ替える更新方式です。</li>
-<li>Rollback: 以前のReplicaSetや設定へ戻す操作です。</li>
-<li>Probe: コンテナの状態を確認する仕組みです。</li>
-<li>Liveness Probe: コンテナを再起動すべきか判断するProbeです。</li>
-<li>Readiness Probe: Serviceの転送先に含めるべきか判断するProbeです。</li>
-<li>Startup Probe: 起動に時間がかかるアプリケーション向けのProbeです。</li>
-<li>Resource Requests: スケジューリング時に必要量として扱われるCPU/メモリ指定です。</li>
-<li>Resource Limits: コンテナが利用できるCPU/メモリ上限です。</li>
-<li>QoS Class: RequestsとLimitsの指定に応じたPodの品質クラスです。</li>
-<li>HPA: Horizontal Pod Autoscaler。メトリクスに応じてPod数を増減します。</li>
-<li>VPA: Vertical Pod Autoscaler。PodのCPU/メモリ推奨値や設定を調整します。</li>
-<li>PDB: PodDisruptionBudget。メンテナンス時に同時停止できるPod数を制御します。</li>
-<li>Taint: Nodeへ付与し、許容しないPodを配置させない制約です。</li>
-<li>Toleration: Podが特定のTaintを許容する設定です。</li>
-<li>Affinity: Podを特定条件のNodeやPod近くへ配置するルールです。</li>
-<li>Anti-Affinity: Podを特定条件から離して配置するルールです。</li>
-<li>Topology Spread Constraint: ZoneやNodeなどのトポロジにPodを分散する制約です。</li>
+<li><strong>Pod</strong>: 1つ以上のコンテナをまとめたKubernetesの最小実行単位です。</li>
+<li><strong>Container</strong>: イメージから起動されるプロセス隔離単位です。</li>
+<li><strong>Init Container</strong>: アプリケーションコンテナ起動前に順番に実行されるコンテナです。</li>
+<li><strong>Sidecar</strong>: メインアプリケーションを補助する同居コンテナです。</li>
+<li><strong>Static Pod</strong>: kubeletが直接管理し、API Server経由で作成されないPodです。</li>
+<li><strong>ReplicaSet</strong>: 指定数のPodレプリカを維持するリソースです。</li>
+<li><strong>Deployment</strong>: ReplicaSetを管理し、ローリング更新やロールバックを提供します。</li>
+<li><strong>StatefulSet</strong>: 安定したPod名、順序、永続ストレージを持つワークロードです。</li>
+<li><strong>DaemonSet</strong>: 各NodeにPodを1つずつ配置する用途のワークロードです。</li>
+<li><strong>Job</strong>: 完了するまで実行される一回限りの処理です。</li>
+<li><strong>CronJob</strong>: スケジュールに従ってJobを作成するリソースです。</li>
+<li><strong>Rolling Update</strong>: Podを段階的に入れ替える更新方式です。</li>
+<li><strong>Rollback</strong>: 以前のReplicaSetや設定へ戻す操作です。</li>
+<li><strong>Probe</strong>: コンテナの状態を確認する仕組みです。</li>
+<li><strong>Liveness Probe</strong>: コンテナを再起動すべきか判断するProbeです。</li>
+<li><strong>Readiness Probe</strong>: Serviceの転送先に含めるべきか判断するProbeです。</li>
+<li><strong>Startup Probe</strong>: 起動に時間がかかるアプリケーション向けのProbeです。</li>
+<li><strong>Resource Requests</strong>: スケジューリング時に必要量として扱われるCPU/メモリ指定です。</li>
+<li><strong>Resource Limits</strong>: コンテナが利用できるCPU/メモリ上限です。</li>
+<li><strong>QoS Class</strong>: RequestsとLimitsの指定に応じたPodの品質クラスです。</li>
+<li><strong>HPA</strong>: Horizontal Pod Autoscaler。メトリクスに応じてPod数を増減します。</li>
+<li><strong>VPA</strong>: Vertical Pod Autoscaler。PodのCPU/メモリ推奨値や設定を調整します。</li>
+<li><strong>PDB</strong>: PodDisruptionBudget。メンテナンス時に同時停止できるPod数を制御します。</li>
+<li><strong>Taint</strong>: Nodeへ付与し、許容しないPodを配置させない制約です。</li>
+<li><strong>Toleration</strong>: Podが特定のTaintを許容する設定です。</li>
+<li><strong>Affinity</strong>: Podを特定条件のNodeやPod近くへ配置するルールです。</li>
+<li><strong>Anti-Affinity</strong>: Podを特定条件から離して配置するルールです。</li>
+<li><strong>Topology Spread Constraint</strong>: ZoneやNodeなどのトポロジにPodを分散する制約です。</li>
 </ul>
 <h2 id="networking">Networking</h2>
 <ul>
-<li>Service: Podへの安定したアクセス先を提供するリソースです。</li>
-<li>ClusterIP: クラスタ内部向けService IPです。</li>
-<li>NodePort: 各NodeのポートでServiceを公開する方式です。</li>
-<li>LoadBalancer: 外部LoadBalancerと連携するService種別です。</li>
-<li>Headless Service: ClusterIPを持たず、Pod DNSを直接返すServiceです。</li>
-<li>Endpoint: Serviceの実際の転送先Pod IPとPortです。</li>
-<li>EndpointSlice: Endpointをスケーラブルに分割管理するリソースです。</li>
-<li>Ingress: HTTP/HTTPSルーティングを定義するKubernetesリソースです。</li>
-<li>Ingress Controller: Ingress定義を実際のプロキシ設定へ反映するコンポーネントです。</li>
-<li>Route: OpenShift固有の外部HTTP/HTTPS公開リソースです。</li>
-<li>DNS: Service名やPod名を名前解決する仕組みです。</li>
-<li>CoreDNS: Kubernetesで一般的に使われるDNSサーバです。</li>
-<li>CNI: Container Network Interface。Podネットワークを設定するプラグイン仕様です。</li>
-<li>Multus: Podに複数ネットワークインターフェースを付与するCNIメタプラグインです。</li>
-<li>NetworkAttachmentDefinition: Multusで追加ネットワークを定義するリソースです。</li>
-<li>NetworkPolicy: Pod間や外部との通信を制御するリソースです。</li>
-<li>Egress: Podから外へ出る通信です。</li>
-<li>Ingress Traffic: PodやServiceへ入る通信です。</li>
-<li>MTU: ネットワークで一度に送れる最大パケットサイズです。</li>
-<li>NAT: IPアドレスを変換して通信する仕組みです。</li>
-<li>OVN-Kubernetes: OpenShiftで利用されるPodネットワーク実装の一つです。</li>
-<li>SDN: Software Defined Networking。ソフトウェアで制御するネットワークです。</li>
-<li>MetalLB: bare metal環境でLoadBalancer Serviceを提供する実装です。</li>
-<li>BGP: 経路情報を交換するためのルーティングプロトコルです。</li>
-<li>L2 Advertisement: MetalLBが同一L2セグメントへService IPを広告する方式です。</li>
-<li>SR-IOV: 物理NICを複数の仮想機能に分割し、高性能ネットワークをPodなどへ提供する技術です。</li>
-<li>PF: Physical Function。SR-IOV対応NICの物理機能です。</li>
-<li>VF: Virtual Function。PodやVMに割り当てる仮想NIC機能です。</li>
-<li>NMState: Linuxネットワーク設定を宣言的に管理する仕組みです。</li>
+<li><strong>Service</strong>: Podへの安定したアクセス先を提供するリソースです。</li>
+<li><strong>ClusterIP</strong>: クラスタ内部向けService IPです。</li>
+<li><strong>NodePort</strong>: 各NodeのポートでServiceを公開する方式です。</li>
+<li><strong>LoadBalancer</strong>: 外部LoadBalancerと連携するService種別です。</li>
+<li><strong>Headless Service</strong>: ClusterIPを持たず、Pod DNSを直接返すServiceです。</li>
+<li><strong>Endpoint</strong>: Serviceの実際の転送先Pod IPとPortです。</li>
+<li><strong>EndpointSlice</strong>: Endpointをスケーラブルに分割管理するリソースです。</li>
+<li><strong>Ingress</strong>: HTTP/HTTPSルーティングを定義するKubernetesリソースです。</li>
+<li><strong>Ingress Controller</strong>: Ingress定義を実際のプロキシ設定へ反映するコンポーネントです。</li>
+<li><strong>Route</strong>: OpenShift固有の外部HTTP/HTTPS公開リソースです。</li>
+<li><strong>DNS</strong>: Service名やPod名を名前解決する仕組みです。</li>
+<li><strong>CoreDNS</strong>: Kubernetesで一般的に使われるDNSサーバです。</li>
+<li><strong>CNI</strong>: Container Network Interface。Podネットワークを設定するプラグイン仕様です。</li>
+<li><strong>Multus</strong>: Podに複数ネットワークインターフェースを付与するCNIメタプラグインです。</li>
+<li><strong>NetworkAttachmentDefinition</strong>: Multusで追加ネットワークを定義するリソースです。</li>
+<li><strong>NetworkPolicy</strong>: Pod間や外部との通信を制御するリソースです。</li>
+<li><strong>Egress</strong>: Podから外へ出る通信です。</li>
+<li><strong>Ingress Traffic</strong>: PodやServiceへ入る通信です。</li>
+<li><strong>MTU</strong>: ネットワークで一度に送れる最大パケットサイズです。</li>
+<li><strong>NAT</strong>: IPアドレスを変換して通信する仕組みです。</li>
+<li><strong>OVN-Kubernetes</strong>: OpenShiftで利用されるPodネットワーク実装の一つです。</li>
+<li><strong>SDN</strong>: Software Defined Networking。ソフトウェアで制御するネットワークです。</li>
+<li><strong>MetalLB</strong>: bare metal環境でLoadBalancer Serviceを提供する実装です。</li>
+<li><strong>BGP</strong>: 経路情報を交換するためのルーティングプロトコルです。</li>
+<li><strong>L2 Advertisement</strong>: MetalLBが同一L2セグメントへService IPを広告する方式です。</li>
+<li><strong>SR-IOV</strong>: 物理NICを複数の仮想機能に分割し、高性能ネットワークをPodなどへ提供する技術です。</li>
+<li><strong>PF</strong>: Physical Function。SR-IOV対応NICの物理機能です。</li>
+<li><strong>VF</strong>: Virtual Function。PodやVMに割り当てる仮想NIC機能です。</li>
+<li><strong>NMState</strong>: Linuxネットワーク設定を宣言的に管理する仕組みです。</li>
 </ul>
 <h2 id="storage">Storage</h2>
 <ul>
-<li>Volume: Podへマウントされるストレージ定義です。</li>
-<li>PersistentVolume: クラスタに存在する永続ストレージ実体です。</li>
-<li>PersistentVolumeClaim: アプリケーションが要求する永続ストレージです。</li>
-<li>StorageClass: 動的プロビジョニング方式やパラメータを定義します。</li>
-<li>Dynamic Provisioning: PVCに応じてPVを自動作成する仕組みです。</li>
-<li>Access Mode: RWO、ROX、RWXなど、PVのマウント方法を示します。</li>
-<li>RWO: ReadWriteOnce。単一Nodeから読み書き可能です。</li>
-<li>RWX: ReadWriteMany。複数Nodeから読み書き可能です。</li>
-<li>CSI: Container Storage Interface。ストレージプラグインの標準仕様です。</li>
-<li>CSI Driver: CSI仕様に従いストレージ操作を実装するコンポーネントです。</li>
-<li>Storage Snapshot: PVCの時点コピーです。</li>
-<li>Reclaim Policy: PVC削除後にPVを削除するか保持するかのポリシーです。</li>
-<li>emptyDir: Pod存続中だけ使える一時領域です。</li>
-<li>hostPath: Node上のパスをPodへ直接マウントするVolumeです。強い権限を伴います。</li>
-<li>ConfigMap Volume: ConfigMapをファイルとしてPodへ渡す方式です。</li>
-<li>Secret Volume: SecretをファイルとしてPodへ渡す方式です。</li>
+<li><strong>Volume</strong>: Podへマウントされるストレージ定義です。</li>
+<li><strong>PersistentVolume</strong>: クラスタに存在する永続ストレージ実体です。</li>
+<li><strong>PersistentVolumeClaim</strong>: アプリケーションが要求する永続ストレージです。</li>
+<li><strong>StorageClass</strong>: 動的プロビジョニング方式やパラメータを定義します。</li>
+<li><strong>Dynamic Provisioning</strong>: PVCに応じてPVを自動作成する仕組みです。</li>
+<li><strong>Access Mode</strong>: RWO、ROX、RWXなど、PVのマウント方法を示します。</li>
+<li><strong>RWO</strong>: ReadWriteOnce。単一Nodeから読み書き可能です。</li>
+<li><strong>RWX</strong>: ReadWriteMany。複数Nodeから読み書き可能です。</li>
+<li><strong>CSI</strong>: Container Storage Interface。ストレージプラグインの標準仕様です。</li>
+<li><strong>CSI Driver</strong>: CSI仕様に従いストレージ操作を実装するコンポーネントです。</li>
+<li><strong>Storage Snapshot</strong>: PVCの時点コピーです。</li>
+<li><strong>Reclaim Policy</strong>: PVC削除後にPVを削除するか保持するかのポリシーです。</li>
+<li><strong>emptyDir</strong>: Pod存続中だけ使える一時領域です。</li>
+<li><strong>hostPath</strong>: Node上のパスをPodへ直接マウントするVolumeです。強い権限を伴います。</li>
+<li><strong>ConfigMap Volume</strong>: ConfigMapをファイルとしてPodへ渡す方式です。</li>
+<li><strong>Secret Volume</strong>: SecretをファイルとしてPodへ渡す方式です。</li>
 </ul>
 <h2 id="configuration">Configuration</h2>
 <ul>
-<li>ConfigMap: 非機密の設定値を保持するリソースです。</li>
-<li>Secret: パスワード、トークン、証明書などを保持するリソースです。</li>
-<li>Environment Variable: コンテナに渡す環境変数です。</li>
-<li>Downward API: Podやコンテナ自身のメタデータを環境変数やファイルで渡す仕組みです。</li>
-<li>ServiceAccount: PodやプロセスがKubernetes APIへアクセスするためのIDです。</li>
-<li>ImagePullSecret: private registryからイメージをpullするための認証情報です。</li>
-<li>Immutable ConfigMap/Secret: 作成後に変更できない設定リソースです。</li>
+<li><strong>ConfigMap</strong>: 非機密の設定値を保持するリソースです。</li>
+<li><strong>Secret</strong>: パスワード、トークン、証明書などを保持するリソースです。</li>
+<li><strong>Environment Variable</strong>: コンテナに渡す環境変数です。</li>
+<li><strong>Downward API</strong>: Podやコンテナ自身のメタデータを環境変数やファイルで渡す仕組みです。</li>
+<li><strong>ServiceAccount</strong>: PodやプロセスがKubernetes APIへアクセスするためのIDです。</li>
+<li><strong>ImagePullSecret</strong>: private registryからイメージをpullするための認証情報です。</li>
+<li><strong>Immutable ConfigMap/Secret</strong>: 作成後に変更できない設定リソースです。</li>
 </ul>
 <h2 id="security">Security</h2>
 <ul>
-<li>RBAC: Role Based Access Control。API操作権限を制御する仕組みです。</li>
-<li>Role: Namespace内の権限セットです。</li>
-<li>ClusterRole: クラスタスコープまたは複数Namespaceで使える権限セットです。</li>
-<li>RoleBinding: RoleやClusterRoleをUser、Group、ServiceAccountへ割り当てます。</li>
-<li>ClusterRoleBinding: ClusterRoleをクラスタスコープで割り当てます。</li>
-<li>Subject: 権限付与の対象となるUser、Group、ServiceAccountです。</li>
-<li>Verb: get、list、watch、create、update、deleteなどのAPI操作です。</li>
-<li>Authentication: 利用者やプロセスが誰かを確認する仕組みです。</li>
-<li>Authorization: 認証済み主体に操作を許可するか判断する仕組みです。</li>
-<li>Admission Controller: APIリクエストを永続化前に検査、変更、拒否する仕組みです。</li>
-<li>Mutating Admission Webhook: APIリクエスト内容を変更するWebhookです。</li>
-<li>Validating Admission Webhook: APIリクエストを検証し拒否できるWebhookです。</li>
-<li>SecurityContext: PodやコンテナのLinux権限、UID、Capabilitiesなどを指定します。</li>
-<li>Pod Security Admission: Podのセキュリティ水準をNamespace単位で制御する仕組みです。</li>
-<li>Pod Security Standards: privileged、baseline、restrictedのPodセキュリティ基準です。</li>
-<li>SCC: Security Context Constraints。OpenShift固有のPod実行制約です。</li>
-<li>SELinux: Linuxの強制アクセス制御です。</li>
-<li>Seccomp: コンテナが利用できるsystem callを制限する仕組みです。</li>
-<li>AppArmor: Linux Security Moduleの一つでプロセス権限を制御します。</li>
-<li>Linux Capabilities: root権限を細かく分割した権限単位です。</li>
-<li>Privileged Container: Hostに近い強い権限を持つコンテナです。</li>
-<li>runAsNonRoot: root以外のUIDでコンテナを実行させる設定です。</li>
-<li>readOnlyRootFilesystem: root filesystemを書き込み不可にする設定です。</li>
-<li>Supply Chain Security: イメージ、依存関係、ビルド、署名、配布経路を守る考え方です。</li>
-<li>Image Scanning: コンテナイメージの脆弱性を検査することです。</li>
-<li>Image Signing: イメージの作成元や改ざん有無を検証できるよう署名することです。</li>
-<li>SBOM: Software Bill of Materials。ソフトウェア部品表です。</li>
-<li>OPA: Open Policy Agent。ポリシーをコードとして評価する仕組みです。</li>
-<li>Gatekeeper: OPAをKubernetes admissionに統合するプロジェクトです。</li>
-<li>Kyverno: Kubernetes向けポリシーエンジンです。</li>
-<li>Audit Log: API操作や認証認可の記録です。</li>
-<li>Secret Rotation: Secretを定期的または必要時に更新する運用です。</li>
+<li><strong>RBAC</strong>: Role Based Access Control。API操作権限を制御する仕組みです。</li>
+<li><strong>Role</strong>: Namespace内の権限セットです。</li>
+<li><strong>ClusterRole</strong>: クラスタスコープまたは複数Namespaceで使える権限セットです。</li>
+<li><strong>RoleBinding</strong>: RoleやClusterRoleをUser、Group、ServiceAccountへ割り当てます。</li>
+<li><strong>ClusterRoleBinding</strong>: ClusterRoleをクラスタスコープで割り当てます。</li>
+<li><strong>Subject</strong>: 権限付与の対象となるUser、Group、ServiceAccountです。</li>
+<li><strong>Verb</strong>: get、list、watch、create、update、deleteなどのAPI操作です。</li>
+<li><strong>Authentication</strong>: 利用者やプロセスが誰かを確認する仕組みです。</li>
+<li><strong>Authorization</strong>: 認証済み主体に操作を許可するか判断する仕組みです。</li>
+<li><strong>Admission Controller</strong>: APIリクエストを永続化前に検査、変更、拒否する仕組みです。</li>
+<li><strong>Mutating Admission Webhook</strong>: APIリクエスト内容を変更するWebhookです。</li>
+<li><strong>Validating Admission Webhook</strong>: APIリクエストを検証し拒否できるWebhookです。</li>
+<li><strong>SecurityContext</strong>: PodやコンテナのLinux権限、UID、Capabilitiesなどを指定します。</li>
+<li><strong>Pod Security Admission</strong>: Podのセキュリティ水準をNamespace単位で制御する仕組みです。</li>
+<li><strong>Pod Security Standards</strong>: privileged、baseline、restrictedのPodセキュリティ基準です。</li>
+<li><strong>SCC</strong>: Security Context Constraints。OpenShift固有のPod実行制約です。</li>
+<li><strong>SELinux</strong>: Linuxの強制アクセス制御です。</li>
+<li><strong>Seccomp</strong>: コンテナが利用できるsystem callを制限する仕組みです。</li>
+<li><strong>AppArmor</strong>: Linux Security Moduleの一つでプロセス権限を制御します。</li>
+<li><strong>Linux Capabilities</strong>: root権限を細かく分割した権限単位です。</li>
+<li><strong>Privileged Container</strong>: Hostに近い強い権限を持つコンテナです。</li>
+<li><strong>runAsNonRoot</strong>: root以外のUIDでコンテナを実行させる設定です。</li>
+<li><strong>readOnlyRootFilesystem</strong>: root filesystemを書き込み不可にする設定です。</li>
+<li><strong>Supply Chain Security</strong>: イメージ、依存関係、ビルド、署名、配布経路を守る考え方です。</li>
+<li><strong>Image Scanning</strong>: コンテナイメージの脆弱性を検査することです。</li>
+<li><strong>Image Signing</strong>: イメージの作成元や改ざん有無を検証できるよう署名することです。</li>
+<li><strong>SBOM</strong>: Software Bill of Materials。ソフトウェア部品表です。</li>
+<li><strong>OPA</strong>: Open Policy Agent。ポリシーをコードとして評価する仕組みです。</li>
+<li><strong>Gatekeeper</strong>: OPAをKubernetes admissionに統合するプロジェクトです。</li>
+<li><strong>Kyverno</strong>: Kubernetes向けポリシーエンジンです。</li>
+<li><strong>Audit Log</strong>: API操作や認証認可の記録です。</li>
+<li><strong>Secret Rotation</strong>: Secretを定期的または必要時に更新する運用です。</li>
 </ul>
 <h2 id="operations">Operations</h2>
 <ul>
-<li><code>oc</code>: OpenShift CLIです。</li>
-<li><code>kubectl</code>: Kubernetes CLIです。</li>
-<li>kubeconfig: クラスタ接続先、認証情報、contextを持つ設定ファイルです。</li>
-<li>Context: CLIが操作するクラスタ、ユーザー、Namespaceの組み合わせです。</li>
-<li>Event: リソースで起きた状態変化や警告の記録です。</li>
-<li>Log: コンテナ、Node、Operatorなどが出力する実行記録です。</li>
-<li>Metrics: CPU、メモリ、リクエスト数などの数値時系列データです。</li>
-<li>Alert: 条件に基づき通知される異常や注意です。</li>
-<li>Prometheus: メトリクス収集とアラート評価の仕組みです。</li>
-<li>Alertmanager: Prometheus Alertを通知先へルーティングするコンポーネントです。</li>
-<li>Grafana: メトリクスなどを可視化するダッシュボードツールです。</li>
-<li>Loki: ログ保存、検索向けのログ集約システムです。</li>
-<li>Vector: ログやイベントを収集、変換、転送するエージェントです。</li>
-<li>ClusterLogForwarder: OpenShift Loggingでログ転送pipelineを定義するリソースです。</li>
-<li>Operator: 運用ロジックをKubernetes controllerとして実装したものです。</li>
-<li>CRD: Custom Resource Definition。独自APIリソースを追加する仕組みです。</li>
-<li>Custom Resource: CRDによって定義された独自リソースです。</li>
-<li>OLM: Operator Lifecycle Manager。Operatorの導入、更新、管理を行います。</li>
-<li>Subscription: OLMでOperatorの更新チャネルや導入元を指定するリソースです。</li>
-<li>CatalogSource: Operatorカタログの取得元です。</li>
-<li>InstallPlan: Operator導入や更新の具体的な実行計画です。</li>
-<li>ClusterOperator: OpenShift基盤Operatorの状態を表すリソースです。</li>
-<li>ClusterVersion: OpenShiftクラスタのバージョンと更新状態を表すリソースです。</li>
-<li>Drain: NodeからPodを退避させ、メンテナンス可能にする操作です。</li>
-<li>Cordon: Nodeへ新しいPodをスケジュールさせない操作です。</li>
-<li>Uncordon: Cordonを解除する操作です。</li>
-<li>Backup: 障害や誤操作に備えてデータや設定を保存することです。</li>
-<li>Restore: バックアップから状態を復旧することです。</li>
-<li>RPO: Recovery Point Objective。許容されるデータ損失時間です。</li>
-<li>RTO: Recovery Time Objective。復旧までに許容される時間です。</li>
-<li>Upgrade: クラスタやコンポーネントを新バージョンへ更新することです。</li>
-<li>Disconnected Environment: インターネットへ直接出られない制限環境です。</li>
-<li>Mirror Registry: disconnected環境で必要イメージを保持する内部registryです。</li>
+<li><strong><code>oc</code></strong>: OpenShift CLIです。</li>
+<li><strong><code>kubectl</code></strong>: Kubernetes CLIです。</li>
+<li><strong>kubeconfig</strong>: クラスタ接続先、認証情報、contextを持つ設定ファイルです。</li>
+<li><strong>Context</strong>: CLIが操作するクラスタ、ユーザー、Namespaceの組み合わせです。</li>
+<li><strong>Event</strong>: リソースで起きた状態変化や警告の記録です。</li>
+<li><strong>Log</strong>: コンテナ、Node、Operatorなどが出力する実行記録です。</li>
+<li><strong>Metrics</strong>: CPU、メモリ、リクエスト数などの数値時系列データです。</li>
+<li><strong>Alert</strong>: 条件に基づき通知される異常や注意です。</li>
+<li><strong>Prometheus</strong>: メトリクス収集とアラート評価の仕組みです。</li>
+<li><strong>Alertmanager</strong>: Prometheus Alertを通知先へルーティングするコンポーネントです。</li>
+<li><strong>Grafana</strong>: メトリクスなどを可視化するダッシュボードツールです。</li>
+<li><strong>Loki</strong>: ログ保存、検索向けのログ集約システムです。</li>
+<li><strong>Vector</strong>: ログやイベントを収集、変換、転送するエージェントです。</li>
+<li><strong>ClusterLogForwarder</strong>: OpenShift Loggingでログ転送pipelineを定義するリソースです。</li>
+<li><strong>Operator</strong>: 運用ロジックをKubernetes controllerとして実装したものです。</li>
+<li><strong>CRD</strong>: Custom Resource Definition。独自APIリソースを追加する仕組みです。</li>
+<li><strong>Custom Resource</strong>: CRDによって定義された独自リソースです。</li>
+<li><strong>OLM</strong>: Operator Lifecycle Manager。Operatorの導入、更新、管理を行います。</li>
+<li><strong>Subscription</strong>: OLMでOperatorの更新チャネルや導入元を指定するリソースです。</li>
+<li><strong>CatalogSource</strong>: Operatorカタログの取得元です。</li>
+<li><strong>InstallPlan</strong>: Operator導入や更新の具体的な実行計画です。</li>
+<li><strong>ClusterOperator</strong>: OpenShift基盤Operatorの状態を表すリソースです。</li>
+<li><strong>ClusterVersion</strong>: OpenShiftクラスタのバージョンと更新状態を表すリソースです。</li>
+<li><strong>Drain</strong>: NodeからPodを退避させ、メンテナンス可能にする操作です。</li>
+<li><strong>Cordon</strong>: Nodeへ新しいPodをスケジュールさせない操作です。</li>
+<li><strong>Uncordon</strong>: Cordonを解除する操作です。</li>
+<li><strong>Backup</strong>: 障害や誤操作に備えてデータや設定を保存することです。</li>
+<li><strong>Restore</strong>: バックアップから状態を復旧することです。</li>
+<li><strong>RPO</strong>: Recovery Point Objective。許容されるデータ損失時間です。</li>
+<li><strong>RTO</strong>: Recovery Time Objective。復旧までに許容される時間です。</li>
+<li><strong>Upgrade</strong>: クラスタやコンポーネントを新バージョンへ更新することです。</li>
+<li><strong>Disconnected Environment</strong>: インターネットへ直接出られない制限環境です。</li>
+<li><strong>Mirror Registry</strong>: disconnected環境で必要イメージを保持する内部registryです。</li>
 </ul>
 <h2 id="openshift-specific">OpenShift Specific</h2>
 <ul>
-<li>OpenShift: Kubernetesを基盤に、開発、運用、セキュリティ機能を統合したプラットフォームです。</li>
-<li>Project: OpenShiftでの作業単位です。Kubernetes Namespaceに対応します。</li>
-<li>BuildConfig: OpenShiftのビルド設定リソースです。</li>
-<li>ImageStream: イメージタグの参照と更新を管理するOpenShiftリソースです。</li>
-<li>DeploymentConfig: OpenShift独自の古いデプロイリソースです。新規ではDeploymentを優先します。</li>
-<li>Source-to-Image: ソースコードからコンテナイメージを作成する仕組みです。</li>
-<li>OpenShift Router: Routeを処理するIngress Controller実装です。</li>
-<li>Console: OpenShiftのWeb UIです。</li>
-<li>MachineConfig: Node OS設定を宣言するOpenShiftリソースです。</li>
-<li>MachineConfigPool: MachineConfigの適用対象Node集合です。</li>
-<li>Machine API: NodeとなるMachineのライフサイクルを管理する仕組みです。</li>
-<li>Assisted Installer: bare metalやedge環境でOpenShiftインストールを支援する仕組みです。</li>
-<li>Discovery ISO: Assisted Installerでホストを検出するために起動するISOです。</li>
-<li>API VIP: OpenShift APIの仮想IPです。</li>
-<li>Ingress VIP: Router/Ingressへ到達するための仮想IPです。</li>
-<li>OpenShift Logging: OpenShift上のログ収集、転送、保存、検索の仕組みです。</li>
-<li>OpenShift Virtualization: KubeVirtを基盤にVMをOpenShift上で実行する機能です。</li>
-<li>Data Foundation: OpenShift向けのソフトウェア定義ストレージ製品です。</li>
-<li>GitOps: Gitを望ましい状態の正としてクラスタへ反映する運用です。</li>
-<li>Pipelines: Tektonを基盤とするOpenShiftのCI/CD機能です。</li>
+<li><strong>OpenShift</strong>: Kubernetesを基盤に、開発、運用、セキュリティ機能を統合したプラットフォームです。</li>
+<li><strong>Project</strong>: OpenShiftでの作業単位です。Kubernetes Namespaceに対応します。</li>
+<li><strong>BuildConfig</strong>: OpenShiftのビルド設定リソースです。</li>
+<li><strong>ImageStream</strong>: イメージタグの参照と更新を管理するOpenShiftリソースです。</li>
+<li><strong>DeploymentConfig</strong>: OpenShift独自の古いデプロイリソースです。新規ではDeploymentを優先します。</li>
+<li><strong>Source-to-Image</strong>: ソースコードからコンテナイメージを作成する仕組みです。</li>
+<li><strong>OpenShift Router</strong>: Routeを処理するIngress Controller実装です。</li>
+<li><strong>Console</strong>: OpenShiftのWeb UIです。</li>
+<li><strong>MachineConfig</strong>: Node OS設定を宣言するOpenShiftリソースです。</li>
+<li><strong>MachineConfigPool</strong>: MachineConfigの適用対象Node集合です。</li>
+<li><strong>Machine API</strong>: NodeとなるMachineのライフサイクルを管理する仕組みです。</li>
+<li><strong>Assisted Installer</strong>: bare metalやedge環境でOpenShiftインストールを支援する仕組みです。</li>
+<li><strong>Discovery ISO</strong>: Assisted Installerでホストを検出するために起動するISOです。</li>
+<li><strong>API VIP</strong>: OpenShift APIの仮想IPです。</li>
+<li><strong>Ingress VIP</strong>: Router/Ingressへ到達するための仮想IPです。</li>
+<li><strong>OpenShift Logging</strong>: OpenShift上のログ収集、転送、保存、検索の仕組みです。</li>
+<li><strong>OpenShift Virtualization</strong>: KubeVirtを基盤にVMをOpenShift上で実行する機能です。</li>
+<li><strong>Data Foundation</strong>: OpenShift向けのソフトウェア定義ストレージ製品です。</li>
+<li><strong>GitOps</strong>: Gitを望ましい状態の正としてクラスタへ反映する運用です。</li>
+<li><strong>Pipelines</strong>: Tektonを基盤とするOpenShiftのCI/CD機能です。</li>
 </ul>
 <h2 id="related">Related</h2>
 <ul>
@@ -2524,7 +2526,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月1日 02:22:08 JST">2026年7月1日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月2日 13:53:44 JST">2026年7月2日</span>
   </span>
 
     
