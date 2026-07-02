@@ -1,0 +1,5 @@
+.md-typeset li > strong:first-child {
+  color: var(--md-primary-fg-color);
+  font-size: 1.04em;
+  font-weight: 700;
+}
