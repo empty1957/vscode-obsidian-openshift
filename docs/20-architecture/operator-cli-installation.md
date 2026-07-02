@@ -252,6 +252,14 @@ spec:
 - Manual承認のInstallPlanが未承認
 - CSVが必要とするCRDや権限を作成できていない
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- OpenShift Operators: https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/operators/understanding-operators
+- Operator Lifecycle Manager documentation: https://olm.operatorframework.io/docs/
+- Operator Framework repositories: https://github.com/operator-framework
+
 ## Related
 
 - [[20-architecture/operators|Operators]]

@@ -212,6 +212,13 @@ OpenShift、Kubernetes、CKA、CKAD、CKSレベルの用語集です。短く引
 - **GitOps**: Gitを望ましい状態の正としてクラスタへ反映する運用です。
 - **Pipelines**: Tektonを基盤とするOpenShiftのCI/CD機能です。
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- OpenShift CLI documentation: https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/cli_tools/openshift-cli-oc
+- kubectl command reference: https://kubernetes.io/docs/reference/kubectl/
+
 ## Related
 
 - [[10-overview/openshift-overview|OpenShift Overview]]

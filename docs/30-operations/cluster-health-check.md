@@ -62,6 +62,13 @@ oc adm inspect ns/<namespace>
 - `Progressing=True` は更新やロールアウト中にも発生するため、継続時間と変更作業の予定を照合します。
 - 障害対応では、原因調査の前に影響範囲、開始時刻、直近変更、復旧優先度をメモします。
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- OpenShift Backup and restore: https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/backup_and_restore/backup-restore-overview
+- Kubernetes Debugging: https://kubernetes.io/docs/tasks/debug/
+
 ## Related
 
 - [[60-troubleshooting/pod-crashloopbackoff|Pod CrashLoopBackOff]]

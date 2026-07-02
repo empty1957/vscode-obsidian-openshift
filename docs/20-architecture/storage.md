@@ -16,6 +16,13 @@ OpenShiftで利用する永続ストレージの整理です。
 - バックアップとリストアの責任範囲はどこか
 - 性能要件と容量増加の見込みはどれくらいか
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- OpenShift Backup and restore: https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/backup_and_restore/backup-restore-overview
+- Kubernetes Storage: https://kubernetes.io/docs/concepts/storage/
+
 ## Related
 
 - [[30-operations/backup-and-restore|Backup and Restore]]

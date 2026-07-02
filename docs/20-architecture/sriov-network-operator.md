@@ -115,6 +115,13 @@ oc describe node <node-name>
 
 - OpenShift SR-IOV Network Operator: https://github.com/openshift/sriov-network-operator
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- OpenShift SR-IOV Network Operator documentation: https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/networking_operators/sr-iov-operator
+- OpenShift SR-IOV Network Operator repository: https://github.com/openshift/sriov-network-operator
+
 ## Related
 
 - [[30-operations/operator-installation-runbook|Operator Installation Runbook]]

@@ -8,6 +8,11 @@
 
 ここに本文を書きます。
 
+## Sources
+
+- Official documentation URL:
+- Source repository URL:
+
 ## Related
 
 - [[README]]

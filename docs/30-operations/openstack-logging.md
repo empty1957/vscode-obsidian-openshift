@@ -118,6 +118,14 @@ oc adm node-logs <node-name>
 
 - Cluster Logging Operator: https://github.com/openshift/cluster-logging-operator
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- OpenShift Logging documentation: https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html-single/logging/index
+- Red Hat OpenShift Logging documentation: https://docs.redhat.com/en/documentation/red_hat_openshift_logging
+- Cluster Logging Operator repository: https://github.com/openshift/cluster-logging-operator
+
 ## Related
 
 - [[30-operations/operator-installation-runbook|Operator Installation Runbook]]

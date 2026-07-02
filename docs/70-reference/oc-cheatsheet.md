@@ -31,6 +31,13 @@ oc rollout status deploy/<deployment-name>
 oc rollout undo deploy/<deployment-name>
 ```
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- OpenShift CLI documentation: https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/cli_tools/openshift-cli-oc
+- kubectl command reference: https://kubernetes.io/docs/reference/kubectl/
+
 ## Related
 
 - [[30-operations/cluster-health-check|Cluster Health Check]]

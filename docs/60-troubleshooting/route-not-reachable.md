@@ -20,6 +20,13 @@ oc get pod -l <label-selector>
 - PodがReadyになっているか
 - NetworkPolicyで通信が遮断されていないか
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- Kubernetes Debugging: https://kubernetes.io/docs/tasks/debug/
+- Kubernetes Troubleshooting applications: https://kubernetes.io/docs/tasks/debug/debug-application/
+
 ## Related
 
 - [[20-architecture/networking|Networking]]

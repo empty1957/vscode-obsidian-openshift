@@ -16,3 +16,8 @@ OpenShift全体像の入口です。
 - [[50-security/_index|Security]]
 - [[60-troubleshooting/_index|Troubleshooting]]
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- Kubernetes Concepts: https://kubernetes.io/docs/concepts/

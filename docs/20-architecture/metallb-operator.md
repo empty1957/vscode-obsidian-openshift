@@ -119,6 +119,15 @@ oc get svc -A | grep LoadBalancer
 - OpenShift MetalLB Operator: https://github.com/openshift/metallb-operator
 - MetalLB upstream: https://github.com/metallb/metallb
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+- OpenShift MetalLB Operator documentation: https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/networking_operators/metallb-operator
+- OpenShift MetalLB Operator repository: https://github.com/openshift/metallb-operator
+- MetalLB upstream documentation: https://metallb.io/documentation/
+- MetalLB upstream repository: https://github.com/metallb/metallb
+
 ## Related
 
 - [[30-operations/operator-installation-runbook|Operator Installation Runbook]]

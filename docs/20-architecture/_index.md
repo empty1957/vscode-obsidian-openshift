@@ -20,6 +20,11 @@ OpenShiftの構成要素、設計パターン、クラスタ機能を支えるOp
 - OperatorHubのAdd-on OperatorはOLMの `Subscription`、`InstallPlan`、`ClusterServiceVersion`、`CustomResourceDefinition` を通じて導入、更新、削除します。
 - RHACM/MCE環境のAssisted Installerは、Hive連携のKubernetes APIとして `ClusterDeployment`、`AgentClusterInstall`、`InfraEnv`、`Agent` などを扱います。
 
+## Sources
+
+- Red Hat OpenShift Documentation: https://docs.redhat.com/en/documentation/openshift_container_platform
+- Kubernetes Documentation: https://kubernetes.io/docs/
+
 ## Related
 
 - [[50-security/_index|Security]]

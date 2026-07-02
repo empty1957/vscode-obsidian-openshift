@@ -22,6 +22,11 @@
 
 完了確認方法を書きます。
 
+## Sources
+
+- Official documentation URL:
+- Source repository URL:
+
 ## Related
 
 - [[30-operations/_index]]
